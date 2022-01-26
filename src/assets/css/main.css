@@ -150,7 +150,7 @@ table {
 body {
   font-family: "Raleway", sans-serif;
   background: var(--chineseblack);
-  background: linear-gradient(133deg, #12121200 0%, #121212bf 22%, rgba(18,18,18,1) 100%);
+  background: linear-gradient(133deg, #12121200 0%, #121212bf 10%, rgba(18,18,18,1) 100%);
   height: 100vh;
   padding: 0 1rem;
 }
