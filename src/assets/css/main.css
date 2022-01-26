@@ -1,5 +1,20 @@
 :root {
-
+  --white: #ffffff;
+  --philippinesilver: #B3B3B3;
+  --independence: #4D506A;
+  --darktan: #848556;
+  --darkcharcoal: #2E2F33;
+  --lavenderrose: #FFA1EA;
+  --silverchalice: #ABABAB;
+  --black: #000000;
+  --chineseblack: #121212;
+  --mediumspringgreen: #1CE48B;
+  --charlestongreen: #292929;
+  --cyanblueazure: #3F72BF;
+  --quicksilver: #A7A7A7;
+  --blackshadows: #BEB8B5;
+  --argent: #BFBFBF;
+  --silversand: #C4C4C4;
 }
 
 * {
