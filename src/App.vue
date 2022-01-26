@@ -7,7 +7,5 @@
 </template>
 
 <style>
-body {
-  font-family: 'Raleway', sans-serif;
-}
+
 </style>
