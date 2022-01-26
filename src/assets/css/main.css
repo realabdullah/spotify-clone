@@ -186,3 +186,9 @@ body {
 .__toolbar li:nth-child(2) {
   padding-right: 20px;
 }
+
+@media(min-width: 580px) {
+  body {
+    display: none;
+  }
+}

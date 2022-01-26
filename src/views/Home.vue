@@ -25,6 +25,34 @@
         </li>
       </ul>
     </div>
+    <div class="__mixes">
+      <ul class="mix__grid">
+        <li>
+          <img src="../assets/visuals/discoverweek.png" alt="mix">
+          <p>Discover weekly</p>
+        </li>
+        <li>
+          <img src="../assets/visuals/dmix1.png" alt="mix">
+          <p>Daily mix 1</p>
+        </li>
+        <li>
+          <img src="../assets/visuals/dmix3.png" alt="mix">
+          <p>Daily mix 3</p>
+        </li>
+        <li>
+          <img src="../assets/visuals/chillvibes.png " alt="mix">
+          <p>Chill vibes</p>
+        </li>
+        <li>
+          <img src="../assets/visuals/teatime.png" alt="mix">
+          <p>Tea time</p>
+        </li>
+        <li>
+          <img src="../assets/visuals/powerhour.png" alt="mix">
+          <p>Power hour</p>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
