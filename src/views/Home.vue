@@ -95,6 +95,7 @@
             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M3.5 7L12.5 2L21.5 7V22H14.5V15H10.5V22H3.5V7Z" fill="white"/>
             </svg>
+            <span>Home</span>
           </router-link>
         </li>
         <li>
@@ -102,6 +103,7 @@
             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7703 2.5C7.47954 2.5 4 5.98347 4 10.2821C4 14.5806 7.47954 18.0641 11.7703 18.0641C13.8161 18.0641 15.6765 17.2729 17.0646 15.9782C18.5884 14.5569 19.5405 12.5313 19.5405 10.2821C19.5405 5.98347 16.061 2.5 11.7703 2.5ZM3 10.2821C3 5.43253 6.92591 1.5 11.7703 1.5C16.6146 1.5 20.5405 5.43253 20.5405 10.2821C20.5405 12.6447 19.6082 14.7901 18.0929 16.3683L21.8755 20.6698L21.1245 21.3302L17.3602 17.0494C15.8429 18.3074 13.8944 19.0641 11.7703 19.0641C6.92591 19.0641 3 15.1316 3 10.2821Z" fill="#ABABAB"/>
             </svg>
+            <span>Search</span>
           </router-link>
         </li>
         <li>
@@ -109,6 +111,7 @@
             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M20.5404 20.697L13.0404 3.19696L13.9596 2.80304L21.4596 20.303L20.5404 20.697ZM3 21V3H4V21H3ZM9 21V3H10V21H9Z" fill="#ABABAB"/>
             </svg>
+            <span>Library</span>
           </router-link>
         </li>
       </ul>

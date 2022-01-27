@@ -159,6 +159,7 @@ body {
   background-attachment: fixed;
   height: 100vh;
   padding: 0 1rem;
+  position: relative;
 }
 
 .__header {
@@ -300,6 +301,35 @@ body {
 
 .podcast__card ul li {
   margin-right: 15px;
+}
+
+.footer__nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 35px;
+}
+
+.footer__nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__nav ul li {
+  margin: 0 40px;
+}
+
+.footer__nav ul li a {
+  text-decoration: none;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer__nav ul li a span {
+  padding-top: 7px;
 }
 
 @media(min-width: 580px) {
