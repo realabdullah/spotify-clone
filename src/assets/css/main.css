@@ -156,6 +156,7 @@ body {
     #121212bf 18%,
     var(--chineseblack) 100%
   );
+  background-attachment: fixed;
   height: 100vh;
   padding: 0 1rem;
 }
