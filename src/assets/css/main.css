@@ -149,6 +149,9 @@ table {
 
 body {
   font-family: "Raleway", sans-serif;
+}
+
+.home {
   background: var(--chineseblack);
   background: linear-gradient(
     147deg,
@@ -157,7 +160,7 @@ body {
     var(--chineseblack) 100%
   );
   background-attachment: fixed;
-  height: 100vh;
+  /* height: 100vh; */
   padding: 0 1rem;
   position: relative;
 }
@@ -394,6 +397,10 @@ body {
   letter-spacing: -0.5%;
   color: var(--quicksilver);
   text-align: center;
+}
+
+a {
+  text-decoration: none;
 }
 
 @media(min-width: 580px) {
