@@ -162,10 +162,39 @@
 
 <script>
 // @ is an alias to /src
+import { ref, onBeforeMount } from 'vue'
 
 export default {
   name: 'Home',
   components: {
+  },
+  setup() {
+    const musicArray = ref([
+      {
+        name: 'La Vida',
+        artist: 'Pheelz',
+        song_url: '../assets/music/lavida.mp3'
+      },
+      {
+        name: 'Many Men',
+        artist: 'Pheelz',
+        song_url: '../assets/music/manymen.mp3'
+      },
+      {
+        name: 'One Life',
+        artist: 'Pheelz',
+        song_url: '../assets/music/onelife.mp3'
+      },
+      {
+        name: 'Somebody',
+        artist: 'Pheelz',
+        song_url: '../assets/music/somebody.mp3'
+      }
+    ])
+
+    onBeforeMount(() => {
+      console.log(musicArray.value)
+    })
   }
 }
 </script>
