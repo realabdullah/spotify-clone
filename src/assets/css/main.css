@@ -12,7 +12,7 @@
   --charlestongreen: #292929;
   --cyanblueazure: #3f72bf;
   --quicksilver: #a7a7a7;
-  --blackshadows: #beb8b5;
+  --blackshadows: #BFB8B2;
   --argent: #bfbfbf;
   --silversand: #c4c4c4;
 }
@@ -428,6 +428,46 @@ a {
   font-weight: 700;
   letter-spacing: -1.5%;
   color: var(--white);
+}
+
+.playing__details {
+  padding-top: 65px;
+  display: flex;
+  flex-direction: column;
+}
+
+.track__cover {
+  padding-bottom: 53px;
+}
+
+.track__cover img {
+  width: 100%;
+}
+
+.track__details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.track__author {
+  display: flex;
+  flex-direction: column;
+}
+
+.track__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -5%;
+  padding-bottom: 5px;
+}
+
+.track__artist {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--blackshadows);
+  letter-spacing: -1%;
 }
 
 @media(min-width: 580px) {
