@@ -72,6 +72,22 @@
         </div>
       </div>
     </div>
+    <div class="podcast__header">
+      <p>Podcasts for you</p>
+    </div>
+    <div class="podcast__card">
+      <ul>
+        <li>
+          <img src="../assets/visuals/podcast4u.png" alt="podcast">
+        </li>
+        <li>
+          <img src="../assets/visuals/podcastforu.png" alt="podcast">
+        </li>
+        <li>
+          <img src="../assets/visuals/podcast4u.png" alt="podcast">
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 

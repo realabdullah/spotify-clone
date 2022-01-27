@@ -226,7 +226,7 @@ body {
 }
 
 .new__songs__header {
-  padding: 35px 18px;
+  padding: 35px 0 18px 0;
 }
 
 .new__songs__header p {
@@ -277,6 +277,28 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.podcast__header {
+  padding: 35px 0 18px 0;
+}
+
+.podcast__header p {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.5%;
+  color: var(--white);
+  text-align: left;
+}
+
+.podcast__card ul {
+  display: flex;
+  align-items: center;
+  overflow: auto;
+}
+
+.podcast__card ul li {
+  margin-right: 15px;
 }
 
 @media(min-width: 580px) {
