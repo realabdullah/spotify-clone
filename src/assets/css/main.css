@@ -225,6 +225,18 @@ body {
   line-height: 1rem;
 }
 
+.new__songs__header {
+  padding: 35px 18px;
+}
+
+.new__songs__header p {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.5%;
+  color: var(--white);
+  text-align: left;
+}
+
 @media(min-width: 580px) {
   body {
     display: none;
