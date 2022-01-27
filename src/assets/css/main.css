@@ -15,6 +15,7 @@
   --blackshadows: #BFB8B2;
   --argent: #bfbfbf;
   --silversand: #c4c4c4;
+  --palesilver: #C3BFB9;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -468,6 +469,41 @@ a {
   font-weight: 600;
   color: var(--blackshadows);
   letter-spacing: -1%;
+}
+
+.__progress {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  height: 4px;
+  width: 100%;
+  background: var(--blackshadows);
+  border-radius: 3px;
+  position: relative;
+}
+
+.__progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50px;
+  background: var(--white);
+  height: 3px;
+}
+
+.__durations {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 3px;
+}
+
+.__duration span,
+.time__left span {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--palesilver);
+  font-size: 0.813rem;
+  font-weight: 300;
 }
 
 @media(min-width: 580px) {

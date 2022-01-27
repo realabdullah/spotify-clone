@@ -30,6 +30,15 @@
           </svg>
         </div>
       </div>
+      <div class="__progress"></div>
+      <div class="__durations">
+        <div class="__duration">
+          <span>0:56</span>
+        </div>
+        <div class="time__left">
+          <span>-3:18</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
