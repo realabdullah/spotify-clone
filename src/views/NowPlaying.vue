@@ -6,7 +6,7 @@
           <path d="M4 7L12.5 17L21 7" stroke="white"/>
         </svg>
       </router-link>
-      <p>Playlist Name</p>
+      <p>Playling from AFROSOUL</p>
       <div class="__more">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="4.5" cy="12.5" r="1.5" fill="white"/>
@@ -17,12 +17,12 @@
     </div>
     <div class="playing__details">
       <div class="track__cover">
-        <img src="../assets/visuals/lauv-big.png" alt="lauv">
+        <img src="https://www.bellanaija.com/wp-content/uploads/2020/11/Wurld-Afrosoul-Deluxe.jpg" alt="lauv">
       </div>
       <div class="track__details">
         <div class="track__author">
-          <p class="track__title">I Like Me Better</p>
-          <p class="track__artist">Lauv</p>
+          <p class="track__title">CHOP N PRAY</p>
+          <p class="track__artist">WurlD</p>
         </div>
         <div class="__fav">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,10 +33,10 @@
       <div class="__progress"></div>
       <div class="__durations">
         <div class="__duration">
-          <span>0:56</span>
+          <span>0:00</span>
         </div>
         <div class="time__left">
-          <span>-3:18</span>
+          <span>-2:59</span>
         </div>
       </div>
     </div>

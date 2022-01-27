@@ -358,6 +358,11 @@ body {
   align-items: center;
 }
 
+.now__playing__song img {
+  width: 40px;
+  height: 40px;
+}
+
 .now__playing__details {
   display: flex;
   flex-direction: column;

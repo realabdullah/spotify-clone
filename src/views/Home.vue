@@ -134,10 +134,10 @@
     </div>
     <router-link to="/playing" class="now__playing">
       <div class="now__playing__song">
-        <img src="../assets/visuals/lauv-cover.png" alt="lauv">
+        <img src="https://www.bellanaija.com/wp-content/uploads/2020/11/Wurld-Afrosoul-Deluxe.jpg" alt="lauv">
         <div class="now__playing__details">
-          <p class="now__playing__title">I Like me Better</p>
-          <p class="now__playing__artiste">Lauv</p>
+          <p class="now__playing__title">CHOP N PRAY</p>
+          <p class="now__playing__artiste">WurlD</p>
         </div>
       </div>
       <div class="now__playing__ctas">
