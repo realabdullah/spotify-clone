@@ -88,6 +88,22 @@
         </li>
       </ul>
     </div>
+    <div class="podcast__header">
+      <p>New Albums</p>
+    </div>
+    <div class="podcast__card">
+      <ul>
+        <li>
+          <img src="../assets/visuals/podcast4u.png" alt="podcast">
+        </li>
+        <li>
+          <img src="../assets/visuals/podcastforu.png" alt="podcast">
+        </li>
+        <li>
+          <img src="../assets/visuals/podcast4u.png" alt="podcast">
+        </li>
+      </ul>
+    </div>
     <div class="footer__nav">
       <ul>
         <li>
@@ -137,6 +153,9 @@
           <path d="M19 3H15V21H19V3Z" fill="white"/>
         </svg>
       </div>
+    </div>
+    <div class="thats__all">
+      <p>That's all for now.</p>
     </div>
   </div>
 </template>
