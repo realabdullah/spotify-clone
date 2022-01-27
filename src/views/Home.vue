@@ -76,7 +76,7 @@
       <p>New album added</p>
     </div>
     <div class="new__album">
-      <router-link to="/">
+      <router-link to="/album">
         <img src="../assets/visuals/cover-image.png" alt="newsongs">
         <div class="new__album__details">
           <p class="__title">Hear Me Out</p>

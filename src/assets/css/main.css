@@ -16,6 +16,7 @@
   --argent: #bfbfbf;
   --silversand: #c4c4c4;
   --palesilver: #C3BFB9;
+  --green: #84B963;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -543,6 +544,204 @@ a {
   align-items: center;
   justify-content: space-between;
   padding-top: 27px;
+}
+
+.__album {
+  background: rgb(18,18,18);
+  background: linear-gradient(
+    0deg
+    , rgba(18,18,18,1) 0%, #1212129e 100%);
+  height: 100vh;
+  padding: 1.875rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.album__cover {
+  width: 250px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.album__cover img {
+  width: 100%;
+}
+
+.album__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -5%;
+  padding-bottom: 14px;
+}
+
+.album__meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.album__meta img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  margin-right: 15px;
+}
+
+.album__artist {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: -1%;
+}
+
+.album__year {
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+.album__year p {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--blackshadows);
+  letter-spacing: -1%;
+}
+
+.album__cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cta__svg {
+  display: flex;
+  align-items: center;
+}
+
+.cta__svg svg:nth-child(2) {
+  margin-left: 20px;
+}
+
+.album__songs {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.album__song {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.song__details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.song_title {
+  padding-bottom: 5px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: -1%;
+}
+
+.song__artist {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--blackshadows);
+  letter-spacing: -1%;
+}
+
+.footer__nav_ {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 30px;
+  background-color: rgb(0 0 0 / 10%);;
+  z-index: 2;
+}
+
+.footer__nav_ ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__nav_ ul li {
+  margin: 0 40px;
+}
+
+.footer__nav_ ul li a {
+  text-decoration: none;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer__nav_ ul li a span {
+  padding-top: 7px;
+}
+
+.now__playing_ {
+  background: #474545;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  left: 10px;
+  right: 10px;
+  bottom: 100px;
+  z-index: 3;
+}
+
+.now__playing__song {
+  display: flex;
+  align-items: center;
+}
+
+.now__playing__song img {
+  width: 40px;
+  height: 40px;
+}
+
+.now__playing__details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 8px;
+}
+
+.now__playing__title {
+  padding-bottom: 7px;
+  color: var(--white);
+  font-weight: 0.813rem;
+  letter-spacing: -3%;
+}
+
+.now__playing__artiste {
+  color: var(--blackshadows);
+  font-weight: 0.813rem;
+  letter-spacing: -3%;
+}
+
+.now__playing__ctas {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.now__playing__ctas svg {
+  padding-left: 24px;
 }
 
 @media(min-width: 580px) {

@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Search from '../views/Search.vue'
 import Library from '../views/Library.vue'
 import NowPlaying from '../views/NowPlaying.vue'
+import Album from '../views/Album.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/playing',
     name: 'Playing',
     component: NowPlaying
+  },
+  {
+    path: '/album',
+    name: 'Album',
+    component: Album
   }
   // {
   //   path: '/about',
