@@ -188,38 +188,6 @@ import { ref, onBeforeMount } from 'vue'
 export default {
   name: 'Home',
   components: {
-  },
-  setup() {
-    const musicArray = ref([
-      {
-        cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
-        name: 'La Vida',
-        artist: 'Pheelz',
-        song_url: '../assets/music/lavida.mp3'
-      },
-      {
-        cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
-        name: 'Many Men',
-        artist: 'Pheelz',
-        song_url: '../assets/music/manymen.mp3'
-      },
-      {
-        cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
-        name: 'One Life',
-        artist: 'Pheelz',
-        song_url: '../assets/music/onelife.mp3'
-      },
-      {
-        cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
-        name: 'Somebody',
-        artist: 'Pheelz',
-        song_url: '../assets/music/somebody.mp3'
-      }
-    ])
-
-    onBeforeMount(() => {
-      console.log(musicArray.value)
-    })
   }
 }
 </script>
