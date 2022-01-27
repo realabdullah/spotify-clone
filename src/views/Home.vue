@@ -132,7 +132,7 @@
         </li>
       </ul>
     </div>
-    <div class="now__playing">
+    <router-link to="/playing" class="now__playing">
       <div class="now__playing__song">
         <img src="../assets/visuals/lauv-cover.png" alt="lauv">
         <div class="now__playing__details">
@@ -153,7 +153,7 @@
           <path d="M19 3H15V21H19V3Z" fill="white"/>
         </svg>
       </div>
-    </div>
+    </router-link>
     <div class="thats__all">
       <p>That's all for now.</p>
     </div>
