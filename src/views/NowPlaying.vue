@@ -15,6 +15,9 @@
         </svg>
       </div>
     </div>
+    <div class="playing__details">
+      
+    </div>
   </div>
 </template>
 

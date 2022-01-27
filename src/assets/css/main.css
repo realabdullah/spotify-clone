@@ -403,6 +403,33 @@ a {
   text-decoration: none;
 }
 
+.__playing {
+  background: rgb(18,18,18);
+  background: -moz-linear-gradient(0deg, rgba(18,18,18,1) 0%, rgba(68,126,212,1) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(18,18,18,1) 0%, rgba(68,126,212,1) 100%);
+  background: linear-gradient(0deg, rgba(18,18,18,1) 0%, rgba(68,126,212,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#121212",endColorstr="#447ed4",GradientType=1);
+  height: 100vh;
+  padding: 1.875rem 1.25rem;
+}
+
+.playing__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.playing__header a {
+  color: var(--white);
+}
+
+.playing__header p {
+  font-size: 0.813rem;
+  font-weight: 700;
+  letter-spacing: -1.5%;
+  color: var(--white);
+}
+
 @media(min-width: 580px) {
   body {
     display: none;
