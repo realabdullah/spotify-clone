@@ -30,13 +30,17 @@
           </svg>
         </div>
       </div>
-      <div class="__progress"></div>
+      <audio @loadedmetadata="initSlider" @canplay="mCanplay" @timeupdate="mTimeUpdate" ref="song" preload="metadata" loop>
+        <source src="../assets/music/lavida.mp3" type="audio/mpeg" />
+      </audio>
+      <!-- <div class="__progress"></div> -->
+      <input v-model="numb" type="range" min="0" :max="max">
       <div class="__durations">
         <div class="__duration">
-          <span>0:00</span>
+          <span id="current-time">{{ newTime }}</span>
         </div>
         <div class="time__left">
-          <span>-2:59</span>
+          <span id="duration">{{ timee }}</span>
         </div>
       </div>
     </div>
@@ -55,9 +59,14 @@
           <path d="M1 0C0.447693 0 0 0.447754 0 1V23C0 23.5522 0.447693 24 1 24H3C3.55231 24 4 23.5522 4 23V13.1428L21.5038 23.145C22.1705 23.5261 23 23.0447 23 22.2769V1.72314C23 0.955322 22.1705 0.473877 21.5038 0.85498L4 10.8572V1C4 0.447754 3.55231 0 3 0H1Z" fill="white"/>
         </svg>
       </div>
-      <div class="play__pause">
+      <div v-if="isPlaying" @click="playMusic" id="play-icon" class="play__pause">
         <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M30 60C46.5685 60 60 46.5685 60 30C60 13.4315 46.5685 0 30 0C13.4315 0 0 13.4315 0 30C0 46.5685 13.4315 60 30 60ZM21 18C20.4477 18 20 18.4477 20 19V41C20 41.5523 20.4477 42 21 42H25C25.5523 42 26 41.5523 26 41V19C26 18.4477 25.5523 18 25 18H21ZM35 18C34.4477 18 34 18.4477 34 19V41C34 41.5523 34.4477 42 35 42H39C39.5523 42 40 41.5523 40 41V19C40 18.4477 39.5523 18 39 18H35Z" fill="white"/>
+        </svg>
+      </div>
+      <div v-else @click="playMusic" id="play-icon" class="play__pause">
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 8 8">
+          <path d="M4 0C1.79 0 0 1.79 0 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zM3 2l3 2-3 2V2z" fill="white"/>
         </svg>
       </div>
       <div class="next">
@@ -92,7 +101,130 @@
 </template>
 
 <script>
+import { ref, onMounted, nextTick, onBeforeMount } from 'vue'
+
 export default {
+  setup() {
+    const playbackTime = ref(0)
+    const audioDuration = ref(100)
+    const audioLoaded = ref(false)
+    const song = ref()
+    const playState = ref('play')
+    const isPlaying = ref(false)
+    const timee = ref("00:00")
+    const newTime = ref("00:00")
+    const max = ref(0)
+    const canplay = ref(false)
+    const numb = ref(0)
+
+    // maximum length/width of slider is audio's duration
+    const initSlider = () => {
+      const audio = song.value
+      if(audio) {
+        audioDuration.value = Math.round(audio.duration)
+      }
+    }
+
+    // Get the total duration of the music
+    const getTime = () => {
+      const audio = song.value
+      const time = audio.duration
+      max.value = time
+      // total duration in seconds
+      timee.value = transTime(time);
+    }
+
+    // time format bit 00:00
+    const formatTime = (value) => {
+      let time = ''
+      let s = value.split(':')
+      let i
+      for (i = 0; i < s.length - 1; i++) {
+        time += s[i].length == 1 ? '0' + s[i] : s[i]
+        time += ':'
+      }
+      time += s[i].length == 1 ? '0' + s[i] : s[i]
+      return time
+    }
+
+    // Convert milliseconds to hours, minutes and seconds
+    const transTime = (value) => {
+      let time = ''
+      let h = parseInt(value / 3600)
+      value %= 3600
+      let m = parseInt(value / 60)
+      let s = parseInt(value % 60)
+      if (h > 0) {
+        time = formatTime(h + ':' + m + ':' + s)
+      } else {
+        time = formatTime(m + ':' + s)
+      }
+      return time
+    }
+
+    const mCanplay = () => {
+      canplay.value = true
+      getTime()
+    }
+
+    const mTimeUpdate = () => {
+      const audio = song.value
+      numb.value = audio.currentTime;
+      newTime.value = transTime(audio.currentTime);
+    }
+
+    const playMusic = () => {
+      const audio = song.value
+      if(playState.value === 'play') {
+        audio.play()
+        isPlaying.value = true
+        console.log('play')
+        playState.value = 'pause'
+      } 
+      else {
+        audio.pause()
+        isPlaying.value = false
+        console.log('pause')
+        playState.value = 'play'
+      }
+    }
+
+    const isAudioLoaded = () => {
+      audioLoaded.value = true
+    }
+
+    onMounted(() => {
+      nextTick(() => {
+        const audio = song.value
+        // audio.addEventListener("loadedmetadata", initSlider())
+        // audio.addEventListener("canplay", audioLoaded.value = true)
+
+      })
+    })
+
+    // onBeforeMount(() => {
+    //   root.$nextTick(() => {
+    //     const audio = song.value
+    //     audio.oncanplay = () => {
+    //       audioLoaded.value = true
+    //     }
+    //   })
+    // })
+
+    return {
+      max,
+      numb,
+      mCanplay,
+      mTimeUpdate,
+      playMusic,
+      song,
+      isPlaying,
+      initSlider,
+      isAudioLoaded,
+      timee,
+      newTime
+    }
+  }
 
 }
 </script>
