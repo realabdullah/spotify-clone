@@ -31,7 +31,7 @@
         </div>
       </div>
       <audio @loadedmetadata="initSlider" @canplay="mCanplay" @timeupdate="mTimeUpdate" ref="song" preload="metadata" loop>
-        <source src="../assets/music/lavida.mp3" type="audio/mpeg" />
+        <source src="../assets/music/chonpray.mp3" type="audio/mpeg" />
       </audio>
       <!-- <div class="__progress"></div> -->
       <input v-model="numb" type="range" min="0" :max="max">
