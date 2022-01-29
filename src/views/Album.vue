@@ -30,10 +30,10 @@
         </div>
       </div>
       <div class="album__songs">
-        <div v-for="music in musicArray" class="album__song">
+        <div v-for="song in album" class="album__song">
           <div class="song__details">
-            <p class="song_title">{{ music.name }}</p>
-            <p class="song__artist">{{ music.artist }}</p>
+            <p class="song_title">{{ song.name }}</p>
+            <p class="song__artist">{{ song.artist }}</p>
           </div>
           <div class="more">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -99,43 +99,23 @@
 </template>
 
 <script>
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, computed } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
   setup() {
-    const musicArray = ref([
-      {
-        cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
-        name: 'La Vida',
-        artist: 'Pheelz',
-        song_url: '../assets/music/lavida.mp3'
-      },
-      {
-        cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
-        name: 'Many Men',
-        artist: 'Pheelz',
-        song_url: '../assets/music/manymen.mp3'
-      },
-      {
-        cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
-        name: 'One Life',
-        artist: 'Pheelz',
-        song_url: '../assets/music/onelife.mp3'
-      },
-      {
-        cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
-        name: 'Somebody',
-        artist: 'Pheelz',
-        song_url: '../assets/music/somebody.mp3'
-      }
-    ])
+    const store = useStore()
+
+    const album = computed(() => {
+      return store.state.musicArray
+    })
 
     onBeforeMount(() => {
-      console.log(musicArray.value)
+      console.log(album.value)
     })
 
     return {
-      musicArray
+      album
     }
   }
 }

@@ -121,7 +121,7 @@ export default {
       const time = audio.duration
       progress.value = time
       // total duration in seconds
-      songDuration.value = convertToHMS(time);
+      songDuration.value = convertToHMS(time)
     }
 
     // time format '00:00'
@@ -163,7 +163,6 @@ export default {
       const audio = song.value
       numb.value = audio.currentTime;
       newDuration.value = convertToHMS(audio.currentTime)
-      
     }
 
     //skipping music
