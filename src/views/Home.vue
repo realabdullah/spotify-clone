@@ -1,6 +1,6 @@
 <template>
  <div class="overall">
-    <div class="home" v-if="!albumView">
+    <div class="home" v-if="!albumView && !nowPlaying">
       <div class="__header">
         <div class="__greeting">
           <p>{{ greeting }}</p>
@@ -156,9 +156,9 @@
         <p>That's all for now.</p>
       </div>
     </div>
-    <Album @view="closeAlbum" v-if="albumView" />
-    <NowPlaying v-if="!albumView" />
-    <FloatPlayer />
+    <Album @view="closeAlbum" v-if="albumView && !nowPlaying" />
+    <NowPlaying v-if="nowPlaying" />
+    <FloatPlayer v-if="!nowPlaying" @view="openNP" />
   </div>
 </template>
 
@@ -177,7 +177,7 @@ export default {
   },
   setup() {
     const albumView = ref(false)
-    const nowPlaying = ref(false)
+    const nowPlaying = ref()
     const greeting = ref()
 
     const viewAlbum = () => {
@@ -188,10 +188,13 @@ export default {
       albumView.value = closeView
     }
 
+    const openNP = (open) => {
+      nowPlaying.value = open
+    }
+
     const getTime = () => {
       const today = new Date()
       const time = today.getHours()
-      console.log(time)
       if(time < 12) {
         greeting.value = 'Good morning'
       }
@@ -208,10 +211,12 @@ export default {
     })
 
     return {
+      openNP,
       albumView,
       viewAlbum,
       closeAlbum,
-      greeting
+      greeting,
+      nowPlaying
     }
   }
 }

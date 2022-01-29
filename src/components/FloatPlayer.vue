@@ -3,7 +3,7 @@
     <audio @canplay="musicReady" @timeupdate="timeUpdate" ref="song" preload="metadata" loop>
       <source src="../assets/music/chopnpray.mp3" type="audio/mpeg" />
     </audio>
-    <div class="now__playing__song">
+    <div @click="closeNP" v-on:click="$emit('view', nowPlaying)" class="now__playing__song">
       <img src="https://www.bellanaija.com/wp-content/uploads/2020/11/Wurld-Afrosoul-Deluxe.jpg" alt="lauv">
       <div class="now__playing__details">
         <p class="now__playing__title">CHOP N PRAY</p>
@@ -39,6 +39,12 @@ export default {
   setup() {
     const store = useStore()
     const song = ref()
+    const nowPlaying = ref(false)
+
+    const closeNP = () => {
+      nowPlaying.value = true
+      console.log('abd')
+    }
 
     const playPause = computed(() => {
       return store.state.isPlaying
@@ -58,7 +64,9 @@ export default {
     return {
       playMusic,
       song,
-      playPause
+      playPause,
+      closeNP,
+      nowPlaying
     }
   }
 }
