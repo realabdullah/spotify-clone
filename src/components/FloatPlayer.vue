@@ -22,6 +22,11 @@
         <path d="M9 3H5V21H9V3Z" fill="white"/>
         <path d="M19 3H15V21H19V3Z" fill="white"/>
       </svg>
+      <svg @click="playMusic" width="27" height="27" version="1.1"><defs id="SvgjsDefs1002"/><g id="SvgjsG1008" transform="matrix(1,0,0,1,0,0)"><svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 48 48">
+        <path fill="none" d="M-838-2232H562v3600H-838z"/>
+        <path d="M16 10v28l22-14z" fill="#FFFFFF"/>
+        <path fill="none" d="M0 0h48v48H0z"/></svg></g>
+      </svg>
     </div>
   </div>
 </template>
