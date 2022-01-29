@@ -153,6 +153,10 @@ body {
   font-family: "Raleway", sans-serif;
 }
 
+.overall {
+  position: relative;
+}
+
 .home {
   background: var(--chineseblack);
   background: linear-gradient(
@@ -164,7 +168,6 @@ body {
   background-attachment: fixed;
   /* height: 100vh; */
   padding: 0 1rem;
-  position: relative;
 }
 
 .__header {

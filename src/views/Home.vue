@@ -152,12 +152,12 @@
           </li>
         </ul>
       </div>
-      <FloatPlayer />
       <div class="thats__all">
         <p>That's all for now.</p>
       </div>
     </div>
     <Album v-else />
+    <FloatPlayer />
   </div>
 </template>
 
