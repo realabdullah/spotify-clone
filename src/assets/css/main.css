@@ -264,7 +264,7 @@ body {
   padding: 15px;
 }
 
-.new__album a {
+.new__album {
   background: var(--charlestongreen);
   border-radius: 8px;
   display: flex;
@@ -272,7 +272,7 @@ body {
   justify-content: flex-start;
 }
 
-.new__album a img {
+.new__album img {
   width: 100%;
   border-radius: 8px 0 0 8px;
 }
