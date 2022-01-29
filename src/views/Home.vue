@@ -3,7 +3,7 @@
     <div class="home" v-if="!albumView">
       <div class="__header">
         <div class="__greeting">
-          <p>Good evening</p>
+          <p>{{ greeting }}</p>
         </div>
         <ul class="__toolbar">
           <li>
@@ -164,7 +164,7 @@
 <script>
 import FloatPlayer from '../components/FloatPlayer.vue'
 import Album from '../components/Album.vue'
-import { ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 
 export default {
   name: 'Home',
@@ -174,6 +174,7 @@ export default {
   },
   setup() {
     const albumView = ref(false)
+    const greeting = ref()
 
     const viewAlbum = () => {
       albumView.value = true
@@ -183,10 +184,33 @@ export default {
       albumView.value = closeView
     }
 
+    const getTime = () => {
+      const today = new Date()
+      const time = today.getHours()
+      console.log(time)
+      if(time < 12) {
+        greeting.value = 'Good morning'
+        console.log('Good Morning')
+      }
+      else if(time > 12) {
+        greeting.value = 'Good afternoon'
+        console.log('Good Afternoon')
+      }
+      else if(time > 16) {
+        greeting.value = 'Good evening'
+        console.log('Good Evening')
+      }
+    }
+
+    onBeforeMount(() => {
+      getTime()
+    })
+
     return {
       albumView,
       viewAlbum,
-      closeAlbum
+      closeAlbum,
+      greeting
     }
   }
 }
