@@ -30,17 +30,17 @@
           </svg>
         </div>
       </div>
-      <audio @loadedmetadata="initSlider" @canplay="mCanplay" @timeupdate="mTimeUpdate" ref="song" preload="metadata" loop>
+      <audio @canplay="musicReady" @timeupdate="timeUpdate" ref="song" preload="metadata" loop>
         <source src="../assets/music/chopnpray.mp3" type="audio/mpeg" />
       </audio>
       <!-- <div class="__progress"></div> -->
-      <input v-model="numb" type="range" min="0" :max="max">
+      <input v-model="numb" type="range" min="0" :max="progress" @input="skipValue">
       <div class="__durations">
         <div class="__duration">
-          <span id="current-time">{{ newTime }}</span>
+          <span id="current-time">{{ newDuration }}</span>
         </div>
         <div class="time__left">
-          <span id="duration">{{ timee }}</span>
+          <span id="duration">{{ songDuration }}</span>
         </div>
       </div>
     </div>
@@ -105,37 +105,27 @@ import { ref, onMounted, nextTick, onBeforeMount } from 'vue'
 
 export default {
   setup() {
-    const playbackTime = ref(0)
-    const audioDuration = ref(100)
     const audioLoaded = ref(false)
     const song = ref()
     const playState = ref('play')
     const isPlaying = ref(false)
-    const timee = ref("00:00")
-    const newTime = ref("00:00")
-    const max = ref(0)
+    const songDuration = ref('00:00')
+    const newDuration = ref('00:00')
+    const progress = ref(0)
     const canplay = ref(false)
     const numb = ref(0)
 
-    // maximum length/width of slider is audio's duration
-    const initSlider = () => {
-      const audio = song.value
-      if(audio) {
-        audioDuration.value = Math.round(audio.duration)
-      }
-    }
-
     // Get the total duration of the music
-    const getTime = () => {
+    const getDuration = () => {
       const audio = song.value
       const time = audio.duration
-      max.value = time
+      progress.value = time
       // total duration in seconds
-      timee.value = transTime(time);
+      songDuration.value = convertToHMS(time);
     }
 
-    // time format bit 00:00
-    const formatTime = (value) => {
+    // time format '00:00'
+    const formatDuration = (value) => {
       let time = ''
       let s = value.split(':')
       let i
@@ -147,32 +137,47 @@ export default {
       return time
     }
 
-    // Convert milliseconds to hours, minutes and seconds
-    const transTime = (value) => {
+    //ms to hr, mins & sec
+    const convertToHMS = (value) => {
       let time = ''
       let h = parseInt(value / 3600)
       value %= 3600
       let m = parseInt(value / 60)
       let s = parseInt(value % 60)
       if (h > 0) {
-        time = formatTime(h + ':' + m + ':' + s)
+        time = formatDuration(h + ':' + m + ':' + s)
       } else {
-        time = formatTime(m + ':' + s)
+        time = formatDuration(m + ':' + s)
       }
       return time
     }
 
-    const mCanplay = () => {
+    //is music ready to play
+    const musicReady = () => {
       canplay.value = true
-      getTime()
+      getDuration()
     }
 
-    const mTimeUpdate = () => {
+    //played time
+    const timeUpdate = () => {
       const audio = song.value
       numb.value = audio.currentTime;
-      newTime.value = transTime(audio.currentTime);
+      newDuration.value = convertToHMS(audio.currentTime);
     }
 
+    //skipping music
+    const skipValue = () => {
+      const audio = song.value
+      if (audio.paused || audio.currentTime != 0) {
+        audio.currentTime = numb.value
+        if (numb.value == Math.floor(progress.value)) {
+          audio.pause()
+          isPlaying.value = false
+        }
+      }
+    }
+
+    //music playback
     const playMusic = () => {
       const audio = song.value
       if(playState.value === 'play') {
@@ -193,36 +198,18 @@ export default {
       audioLoaded.value = true
     }
 
-    onMounted(() => {
-      nextTick(() => {
-        const audio = song.value
-        // audio.addEventListener("loadedmetadata", initSlider())
-        // audio.addEventListener("canplay", audioLoaded.value = true)
-
-      })
-    })
-
-    // onBeforeMount(() => {
-    //   root.$nextTick(() => {
-    //     const audio = song.value
-    //     audio.oncanplay = () => {
-    //       audioLoaded.value = true
-    //     }
-    //   })
-    // })
-
     return {
-      max,
+      progress,
       numb,
-      mCanplay,
-      mTimeUpdate,
+      musicReady,
+      timeUpdate,
       playMusic,
       song,
       isPlaying,
-      initSlider,
       isAudioLoaded,
-      timee,
-      newTime
+      songDuration,
+      newDuration,
+      skipValue
     }
   }
 
