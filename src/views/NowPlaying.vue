@@ -34,7 +34,7 @@
         <source src="../assets/music/chopnpray.mp3" type="audio/mpeg" />
       </audio>
       <!-- <div class="__progress"></div> -->
-      <input class="styled-slider" v-model="numb" type="range" min="0" :max="progress" @input="skipValue">
+      <input class="styled-slider" v-model="numb" type="range" min="0" :max="progress" @input="skipValue" :style="{background: '-webkit-linear-gradient(top, #FFFFFF, #FFFFFF) 0% 0% / '+ numb*100/progress +'% 100% no-repeat'}">
       <div class="__durations">
         <div class="__duration">
           <span id="current-time">{{ newDuration }}</span>
@@ -162,7 +162,8 @@ export default {
     const timeUpdate = () => {
       const audio = song.value
       numb.value = audio.currentTime;
-      newDuration.value = convertToHMS(audio.currentTime);
+      newDuration.value = convertToHMS(audio.currentTime)
+      
     }
 
     //skipping music
