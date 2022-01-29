@@ -73,36 +73,19 @@
         </li>
       </ul>
     </div>
-    <router-link to="/playing" class="now__playing_">
-      <div class="now__playing__song">
-        <img src="https://www.bellanaija.com/wp-content/uploads/2020/11/Wurld-Afrosoul-Deluxe.jpg" alt="lauv">
-        <div class="now__playing__details">
-          <p class="now__playing__title">CHOP N PRAY</p>
-          <p class="now__playing__artiste">WurlD</p>
-        </div>
-      </div>
-      <div class="now__playing__ctas">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5 18H9V19H5V18Z" fill="white"/>
-          <path d="M9 5.5H4C3.44772 5.5 3 5.94772 3 6.5V15C3 15.5523 3.44772 16 4 16H9" stroke="white"/>
-          <circle cx="15.5" cy="13.5" r="2" stroke="white"/>
-          <circle cx="15.5" cy="7.98936" r="0.75" fill="white"/>
-          <rect x="11.5" y="5.5" width="8" height="13" rx="0.5" stroke="white"/>
-        </svg>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 3H5V21H9V3Z" fill="white"/>
-          <path d="M19 3H15V21H19V3Z" fill="white"/>
-        </svg>
-      </div>
-    </router-link>
+    <FloatPlayer />
   </div>
 </template>
 
 <script>
+import FloatPlayer from '../components/FloatPlayer.vue'
 import { ref, onBeforeMount, computed } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
+  components: {
+    FloatPlayer
+  },
   setup() {
     const store = useStore()
 
