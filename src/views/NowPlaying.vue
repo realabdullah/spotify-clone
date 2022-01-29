@@ -34,7 +34,7 @@
         <source src="../assets/music/chopnpray.mp3" type="audio/mpeg" />
       </audio>
       <!-- <div class="__progress"></div> -->
-      <input v-model="numb" type="range" min="0" :max="progress" @input="skipValue">
+      <input class="styled-slider" v-model="numb" type="range" min="0" :max="progress" @input="skipValue">
       <div class="__durations">
         <div class="__duration">
           <span id="current-time">{{ newDuration }}</span>
