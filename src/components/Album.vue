@@ -99,9 +99,9 @@ export default {
       viewAlbum.value = false
     }
 
-    onBeforeMount(() => {
-      console.log(album.value)
-    })
+    // onBeforeMount(() => {
+    //   console.log(album.value)
+    // })
 
     return {
       album,
