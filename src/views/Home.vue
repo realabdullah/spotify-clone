@@ -156,7 +156,7 @@
         <p>That's all for now.</p>
       </div>
     </div>
-    <Album v-else />
+    <Album @view="closeAlbum" v-else />
     <FloatPlayer />
   </div>
 </template>
@@ -179,9 +179,14 @@ export default {
       albumView.value = true
     }
 
+    const closeAlbum = (closeView) => {
+      albumView.value = closeView
+    }
+
     return {
       albumView,
-      viewAlbum
+      viewAlbum,
+      closeAlbum
     }
   }
 }

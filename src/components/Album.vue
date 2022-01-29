@@ -1,6 +1,11 @@
 <template>
   <div class="__album">
     <div class="album__cover">
+      <div @click="closeAlbum" v-on:click="$emit('view', viewAlbum)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 7L12.5 17L21 7" stroke="white"/>
+        </svg>
+      </div>
       <img src="https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg" alt="her">
     </div>
     <div class="album__details">
@@ -88,12 +93,20 @@ export default {
       return store.state.musicArray
     })
 
+    const viewAlbum = ref(true)
+
+    const closeAlbum = () => {
+      viewAlbum.value = false
+    }
+
     onBeforeMount(() => {
       console.log(album.value)
     })
 
     return {
-      album
+      album,
+      viewAlbum,
+      closeAlbum
     }
   }
 }

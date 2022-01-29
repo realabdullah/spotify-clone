@@ -564,9 +564,13 @@ a {
   width: 250px;
   padding-bottom: 20px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
+  align-items: flex-start;
+  justify-content: space-between;
+  /* margin: 0 auto; */
+}
+
+.album__cover div {
+  margin-right: 40px;
 }
 
 .album__cover img {
