@@ -153,7 +153,10 @@
         </li>
       </ul>
     </div>
-    <router-link to="/playing" class="now__playing">
+    <div class="now__playing">
+      <audio @canplay="musicReady" @timeupdate="timeUpdate" ref="song" preload="metadata" loop>
+        <source src="../assets/music/chopnpray.mp3" type="audio/mpeg" />
+      </audio>
       <div class="now__playing__song">
         <img src="https://www.bellanaija.com/wp-content/uploads/2020/11/Wurld-Afrosoul-Deluxe.jpg" alt="lauv">
         <div class="now__playing__details">
@@ -169,12 +172,12 @@
           <circle cx="15.5" cy="7.98936" r="0.75" fill="white"/>
           <rect x="11.5" y="5.5" width="8" height="13" rx="0.5" stroke="white"/>
         </svg>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg @click="playMusic" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M9 3H5V21H9V3Z" fill="white"/>
           <path d="M19 3H15V21H19V3Z" fill="white"/>
         </svg>
       </div>
-    </router-link>
+    </div>
     <div class="thats__all">
       <p>That's all for now.</p>
     </div>
@@ -182,12 +185,32 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import { ref, onBeforeMount } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
   name: 'Home',
   components: {
+  },
+  setup() {
+    const store = useStore()
+    const song = ref()
+
+    const playMusic = () => {
+      const audio = song.value
+      if(store.state.playState === 'play') {
+        store.dispatch('playMusic', audio.play())
+        store.state.playState = 'pause'
+      } else if(store.state.playState === 'pause') {
+        store.dispatch('pauseMusic', audio.pause())
+        store.state.playState = 'play'
+      }
+    }
+
+    return {
+      playMusic,
+      song
+    }
   }
 }
 </script>
