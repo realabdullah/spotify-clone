@@ -156,7 +156,8 @@
         <p>That's all for now.</p>
       </div>
     </div>
-    <Album @view="closeAlbum" v-else />
+    <Album @view="closeAlbum" v-if="albumView" />
+    <NowPlaying v-if="!albumView" />
     <FloatPlayer />
   </div>
 </template>
@@ -164,16 +165,19 @@
 <script>
 import FloatPlayer from '../components/FloatPlayer.vue'
 import Album from '../components/Album.vue'
+import NowPlaying from '../components/NowPlaying.vue'
 import { onBeforeMount, ref } from 'vue'
 
 export default {
   name: 'Home',
   components: {
     FloatPlayer,
-    Album
+    Album,
+    NowPlaying
   },
   setup() {
     const albumView = ref(false)
+    const nowPlaying = ref(false)
     const greeting = ref()
 
     const viewAlbum = () => {
