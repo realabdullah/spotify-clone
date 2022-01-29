@@ -14,6 +14,7 @@ const numb = ref(0)
 export default createStore({
   state: {
     playState: 'play',
+    isPlaying: false,
     musicArray: [
       {
         cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
@@ -116,14 +117,14 @@ export default createStore({
     //music playback
     playMusic(playAudio) {
       playAudio
-      isPlaying.value = true
+      this.state.isPlaying = true
       this.state.playState = 'pause'
       console.log('play')
     },
 
     pauseMusic(pauseAudio) {
       pauseAudio
-      isPlaying.value = false
+      this.state.isPlaying = false
       this.state.playState = 'play'
       console.log('pause')
     },
