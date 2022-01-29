@@ -190,15 +190,12 @@ export default {
       console.log(time)
       if(time < 12) {
         greeting.value = 'Good morning'
-        console.log('Good Morning')
       }
       else if(time > 12) {
         greeting.value = 'Good afternoon'
-        console.log('Good Afternoon')
       }
       else if(time > 16) {
         greeting.value = 'Good evening'
-        console.log('Good Evening')
       }
     }
 
