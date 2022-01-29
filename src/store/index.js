@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 import { ref } from 'vue'
 
 const audioLoaded = ref(false)
-const song = ref()
+// const song = ref()
 const playState = ref('play')
 const isPlaying = ref(false)
 const songDuration = ref('00:00')
@@ -13,6 +13,7 @@ const numb = ref(0)
 
 export default createStore({
   state: {
+    playState: 'play',
     musicArray: [
       {
         cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
@@ -60,7 +61,7 @@ export default createStore({
     },
 
     // time format '00:00'
-    formatDuration({ commit }, value) {
+    formatDuration(value) {
       let time = ''
       let s = value.split(':')
       let i
@@ -73,7 +74,7 @@ export default createStore({
     },
 
     //ms to hr, mins & sec
-    convertToHMS({ commit }, value) {
+    convertToHMS(value) {
       let time = ''
       let h = parseInt(value / 3600)
       value %= 3600
@@ -113,20 +114,18 @@ export default createStore({
     },
 
     //music playback
-    playMusic() {
-      const audio = song.value
-      if(playState.value === 'play') {
-        audio.play()
-        isPlaying.value = true
-        console.log('play')
-        playState.value = 'pause'
-      } 
-      else {
-        audio.pause()
-        isPlaying.value = false
-        console.log('pause')
-        playState.value = 'play'
-      }
+    playMusic(playAudio) {
+      playAudio
+      isPlaying.value = true
+      this.state.playState = 'pause'
+      console.log('play')
+    },
+
+    pauseMusic(pauseAudio) {
+      pauseAudio
+      isPlaying.value = false
+      this.state.playState = 'play'
+      console.log('pause')
     },
 
     isAudioLoaded() {

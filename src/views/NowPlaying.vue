@@ -101,115 +101,39 @@
 </template>
 
 <script>
-import { ref, onMounted, nextTick, onBeforeMount } from 'vue'
+import { ref, computed, onBeforeMount } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
   setup() {
-    const audioLoaded = ref(false)
+    const store = useStore()
     const song = ref()
-    const playState = ref('play')
-    const isPlaying = ref(false)
-    const songDuration = ref('00:00')
-    const newDuration = ref('00:00')
-    const progress = ref(0)
-    const canplay = ref(false)
-    const numb = ref(0)
+    
 
-    // Get the total duration of the music
-    const getDuration = () => {
-      const audio = song.value
-      const time = audio.duration
-      progress.value = time
-      // total duration in seconds
-      songDuration.value = convertToHMS(time)
-    }
-
-    // time format '00:00'
-    const formatDuration = (value) => {
-      let time = ''
-      let s = value.split(':')
-      let i
-      for (i = 0; i < s.length - 1; i++) {
-        time += s[i].length == 1 ? '0' + s[i] : s[i]
-        time += ':'
-      }
-      time += s[i].length == 1 ? '0' + s[i] : s[i]
-      return time
-    }
-
-    //ms to hr, mins & sec
-    const convertToHMS = (value) => {
-      let time = ''
-      let h = parseInt(value / 3600)
-      value %= 3600
-      let m = parseInt(value / 60)
-      let s = parseInt(value % 60)
-      if (h > 0) {
-        time = formatDuration(h + ':' + m + ':' + s)
-      } else {
-        time = formatDuration(m + ':' + s)
-      }
-      return time
-    }
-
-    //is music ready to play
-    const musicReady = () => {
-      canplay.value = true
-      getDuration()
-    }
-
-    //played time
-    const timeUpdate = () => {
-      const audio = song.value
-      numb.value = audio.currentTime;
-      newDuration.value = convertToHMS(audio.currentTime)
-    }
-
-    //skipping music
-    const skipValue = () => {
-      const audio = song.value
-      if (audio.paused || audio.currentTime != 0) {
-        audio.currentTime = numb.value
-        if (numb.value == Math.floor(progress.value)) {
-          audio.pause()
-          isPlaying.value = false
-        }
-      }
-    }
-
-    //music playback
     const playMusic = () => {
       const audio = song.value
-      if(playState.value === 'play') {
-        audio.play()
-        isPlaying.value = true
-        console.log('play')
-        playState.value = 'pause'
-      } 
-      else {
-        audio.pause()
-        isPlaying.value = false
-        console.log('pause')
-        playState.value = 'play'
+      if(store.state.playState === 'play') {
+        store.dispatch('playMusic', audio.play())
+        store.state.playState = 'pause'
+      } else if(store.state.playState === 'pause') {
+        store.dispatch('pauseMusic', audio.pause())
+        store.state.playState = 'play'
       }
     }
-
-    const isAudioLoaded = () => {
-      audioLoaded.value = true
-    }
+    
 
     return {
-      progress,
-      numb,
-      musicReady,
-      timeUpdate,
+      // progress,
+      // numb,
+      // musicReady,
+      // timeUpdate,
       playMusic,
       song,
-      isPlaying,
-      isAudioLoaded,
-      songDuration,
-      newDuration,
-      skipValue
+      // isPlaying,
+      // isAudioLoaded,
+      // songDuration,
+      // newDuration,
+      // skipValue
     }
   }
 
