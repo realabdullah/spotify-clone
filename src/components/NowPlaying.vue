@@ -1,11 +1,11 @@
 <template>
   <div class="__playing">
     <div class="playing__header">
-      <router-link to="/">
+      <div @click="closeNP" v-on:click="$emit('view', nowPlaying)">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4 7L12.5 17L21 7" stroke="white"/>
         </svg>
-      </router-link>
+      </div>
       <p>Playling from AFROSOUL</p>
       <div class="__more">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,7 +59,7 @@
           <path d="M1 0C0.447693 0 0 0.447754 0 1V23C0 23.5522 0.447693 24 1 24H3C3.55231 24 4 23.5522 4 23V13.1428L21.5038 23.145C22.1705 23.5261 23 23.0447 23 22.2769V1.72314C23 0.955322 22.1705 0.473877 21.5038 0.85498L4 10.8572V1C4 0.447754 3.55231 0 3 0H1Z" fill="white"/>
         </svg>
       </div>
-      <div v-if="isPlaying" @click="playMusic" id="play-icon" class="play__pause">
+      <div v-if="playPause" @click="playMusic" id="play-icon" class="play__pause">
         <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M30 60C46.5685 60 60 46.5685 60 30C60 13.4315 46.5685 0 30 0C13.4315 0 0 13.4315 0 30C0 46.5685 13.4315 60 30 60ZM21 18C20.4477 18 20 18.4477 20 19V41C20 41.5523 20.4477 42 21 42H25C25.5523 42 26 41.5523 26 41V19C26 18.4477 25.5523 18 25 18H21ZM35 18C34.4477 18 34 18.4477 34 19V41C34 41.5523 34.4477 42 35 42H39C39.5523 42 40 41.5523 40 41V19C40 18.4477 39.5523 18 39 18H35Z" fill="white"/>
         </svg>
@@ -108,7 +108,15 @@ export default {
   setup() {
     const store = useStore()
     const song = ref()
+    const nowPlaying = ref(true)
+
+    const closeNP = () => {
+      nowPlaying.value = false
+    }
     
+    const playPause = computed(() => {
+      return store.state.isPlaying
+    })
 
     const playMusic = () => {
       const audio = song.value
@@ -127,6 +135,9 @@ export default {
       // numb,
       // musicReady,
       // timeUpdate,
+      playPause,
+      closeNP,
+      nowPlaying,
       playMusic,
       song,
       // isPlaying,

@@ -157,7 +157,7 @@
       </div>
     </div>
     <Album @view="closeAlbum" v-if="albumView && !nowPlaying" />
-    <NowPlaying v-if="nowPlaying" />
+    <NowPlaying @view="closeNP" v-if="nowPlaying" />
     <FloatPlayer v-if="!nowPlaying" @view="openNP" />
   </div>
 </template>
@@ -192,6 +192,10 @@ export default {
       nowPlaying.value = open
     }
 
+    const closeNP = (close) => {
+      nowPlaying.value = close
+    }
+
     const getTime = () => {
       const today = new Date()
       const time = today.getHours()
@@ -211,6 +215,7 @@ export default {
     })
 
     return {
+      closeNP,
       openNP,
       albumView,
       viewAlbum,

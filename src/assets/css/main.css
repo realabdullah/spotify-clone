@@ -449,9 +449,9 @@ a {
   justify-content: space-between;
 }
 
-.playing__header a {
+/* .playing__header  {
   color: var(--white);
-}
+} */
 
 .playing__header p {
   font-size: 0.813rem;
