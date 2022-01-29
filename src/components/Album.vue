@@ -73,19 +73,14 @@
         </li>
       </ul>
     </div>
-    <FloatPlayer />
   </div>
 </template>
 
 <script>
-import FloatPlayer from '../components/FloatPlayer.vue'
 import { ref, onBeforeMount, computed } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
-  components: {
-    FloatPlayer
-  },
   setup() {
     const store = useStore()
 
