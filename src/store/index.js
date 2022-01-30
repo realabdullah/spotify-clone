@@ -1,9 +1,8 @@
-import { createStore } from 'vuex'
+import { createStore, Store } from 'vuex'
 import { ref } from 'vue'
 
 const audioLoaded = ref(false)
 // const song = ref()
-const playState = ref('play')
 const isPlaying = ref(false)
 const songDuration = ref('00:00')
 const newDuration = ref('00:00')
@@ -13,6 +12,9 @@ const numb = ref(0)
 
 export default createStore({
   state: {
+    numb: 0,
+    newDuration: '00:00',
+    song: '',
     playState: 'play',
     isPlaying: false,
     musicArray: [
@@ -49,7 +51,10 @@ export default createStore({
     ]
   },
   mutations: {
-
+    UPDATE_TIME(state, payload) {
+      state.newDuration = payload
+      console.log(state.newDuration)
+    }
   },
   actions: {
     // Get the total duration of the music
@@ -62,9 +67,9 @@ export default createStore({
     },
 
     // time format '00:00'
-    formatDuration(value) {
+    formatDuration(dtbf) {
       let time = ''
-      let s = value.split(':')
+      let s = dtbf.split(':')
       let i
       for (i = 0; i < s.length - 1; i++) {
         time += s[i].length == 1 ? '0' + s[i] : s[i]
@@ -81,10 +86,12 @@ export default createStore({
       value %= 3600
       let m = parseInt(value / 60)
       let s = parseInt(value % 60)
+      console.log(m + ':' + s)
       if (h > 0) {
-        time = formatDuration(h + ':' + m + ':' + s)
+        time = this.dispatch('formatDuration', h + ':' + m + ':' + s)
       } else {
-        time = formatDuration(m + ':' + s)
+        time = this.dispatch('formatDuration', m + ':' + s)
+        console.log(time)
       }
       return time
     },
@@ -96,10 +103,11 @@ export default createStore({
     },
 
     //played time
-    timeupdate() {
-      const audio = song.value
-      numb.value = audio.currentTime;
-      newDuration.value = convertToHMS(audio.currentTime)
+    timeUpdate({ commit, state }, song) {
+      const audio = song
+      state.numb = audio.currentTime
+      let wDuration = this.dispatch('convertToHMS', audio.currentTime)
+      commit('UPDATE_TIME',  wDuration)
     },
 
     //skipping music
