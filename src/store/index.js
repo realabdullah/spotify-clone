@@ -58,6 +58,12 @@ export default createStore({
     },
     UPDATE_TIME(state, payload) {
       state.newDuration = payload
+    },
+    IS_PLAYING(state, payload) {
+      state.isPlaying = payload
+    },
+    PLAY_STATE(state, payload) {
+      state.playState = payload
     }
   },
   actions: {
@@ -118,17 +124,17 @@ export default createStore({
     },
 
     //music playback
-    playMusic(playAudio) {
+    playMusic({commit}, playAudio) {
       playAudio
-      this.state.isPlaying = true
-      this.state.playState = 'pause'
+      commit('IS_PLAYING', true)
+      commit('PLAY_STATE', 'pause')
       console.log('play')
     },
 
-    pauseMusic(pauseAudio) {
+    pauseMusic({commit}, pauseAudio) {
       pauseAudio
-      this.state.isPlaying = false
-      this.state.playState = 'play'
+      commit('IS_PLAYING', false)
+      commit('PLAY_STATE', 'play')
       console.log('pause')
     },
 

@@ -178,6 +178,7 @@ export default {
     }
 
     onMounted(() => {
+      timeUpdate()
       const audio = song.value
       if(store.state.playState === 'pause') {
         store.dispatch('playMusic', audio.play())

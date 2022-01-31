@@ -65,7 +65,8 @@ export default {
       song,
       playPause,
       openNP,
-      nowPlaying
+      nowPlaying,
+      timeUpdate
     }
   }
 }
