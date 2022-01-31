@@ -53,7 +53,6 @@ export default createStore({
   mutations: {
     UPDATE_TIME(state, payload) {
       state.newDuration = payload
-      console.log(state.newDuration)
     }
   },
   actions: {
@@ -66,33 +65,18 @@ export default createStore({
       songDuration.value = convertToHMS(time)
     },
 
-    // time format '00:00'
-    formatDuration(dtbf) {
-      let time = ''
-      let s = dtbf.split(':')
-      let i
-      for (i = 0; i < s.length - 1; i++) {
-        time += s[i].length == 1 ? '0' + s[i] : s[i]
-        time += ':'
-      }
-      time += s[i].length == 1 ? '0' + s[i] : s[i]
-      return time
-    },
-
     //ms to hr, mins & sec
-    convertToHMS(value) {
+    convertToHMS({commit, state}, value) {
+      console.log(value)
       let time = ''
-      let h = parseInt(value / 3600)
-      value %= 3600
-      let m = parseInt(value / 60)
-      let s = parseInt(value % 60)
-      console.log(m + ':' + s)
-      if (h > 0) {
-        time = this.dispatch('formatDuration', h + ':' + m + ':' + s)
-      } else {
-        time = this.dispatch('formatDuration', m + ':' + s)
-        console.log(time)
-      }
+      // let h = parseInt(value / 3600)
+      // value %= 3600
+      let m = Math.floor(value / 60)
+      m = (m >= 10) ? m : "0" + m
+      let s = Math.floor(value % 60)
+      s = (s >= 10) ? s : "0" + s
+      time = m + ':' + s
+      commit('UPDATE_TIME', time)
       return time
     },
 
@@ -103,11 +87,10 @@ export default createStore({
     },
 
     //played time
-    timeUpdate({ commit, state }, song) {
+    timeUpdate({ state }, song) {
       const audio = song
       state.numb = audio.currentTime
-      let wDuration = this.dispatch('convertToHMS', audio.currentTime)
-      commit('UPDATE_TIME',  wDuration)
+      let wDuration = this.dispatch('convertToHMS', state.numb)
     },
 
     //skipping music

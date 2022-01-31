@@ -134,34 +134,6 @@ export default {
       songDuration.value = convertToHMS(time)
     }
 
-    // time format '00:00'
-    const formatDuration = (value) => {
-      let time = ''
-      let s = value.split(':')
-      let i
-      for (i = 0; i < s.length - 1; i++) {
-        time += s[i].length == 1 ? '0' + s[i] : s[i]
-        time += ':'
-      }
-      time += s[i].length == 1 ? '0' + s[i] : s[i]
-      return time
-    }
-
-    //ms to hr, mins & sec
-    const convertToHMS = (value) => {
-      let time = ''
-      let h = parseInt(value / 3600)
-      value %= 3600
-      let m = parseInt(value / 60)
-      let s = parseInt(value % 60)
-      if (h > 0) {
-        time = formatDuration(h + ':' + m + ':' + s)
-      } else {
-        time = formatDuration(m + ':' + s)
-      }
-      return time
-    }
-
     //is music ready to play
     const musicReady = () => {
       canplay.value = true
@@ -174,7 +146,6 @@ export default {
     }
 
     const newDuration = computed(() => {
-      console.log(newDuration)
       return store.state.newDuration
     })
 
