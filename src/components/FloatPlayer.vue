@@ -49,6 +49,11 @@ export default {
       return store.state.isPlaying
     })
 
+    //played time
+    const timeUpdate = () => {
+      store.dispatch('timeUpdate', song.value)
+    }
+
     const playMusic = () => {
       const audio = song.value
       if(store.state.playState === 'play') {
