@@ -4,14 +4,13 @@ import { ref } from 'vue'
 const audioLoaded = ref(false)
 // const song = ref()
 const isPlaying = ref(false)
-const songDuration = ref('00:00')
-const newDuration = ref('00:00')
 const progress = ref(0)
 const canplay = ref(false)
 const numb = ref(0)
 
 export default createStore({
   state: {
+    newSong: '',
     numb: 0,
     songDuration: '00:00',
     newDuration: '00:00',

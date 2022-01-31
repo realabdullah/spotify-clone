@@ -30,10 +30,10 @@
           </svg>
         </div>
       </div>
-      <audio @canplay="musicReady" @timeupdate="timeUpdate" ref="song" preload="metadata" loop>
-        <source src="../assets/music/chopnpray.mp3" type="audio/mpeg" />
-      </audio>
-      <!-- <div class="__progress"></div> -->
+      <div style="display
+      : none;">
+        {{ song }}
+      </div>
       <input class="styled-slider" v-model="numb" type="range" min="0" :max="progress" @input="skipValue" :style="{background: '-webkit-linear-gradient(top, #FFFFFF, #FFFFFF) 0% 0% / '+ numb*100/progress +'% 100% no-repeat'}">
       <div class="__durations">
         <div class="__duration">
@@ -107,7 +107,7 @@ import { useStore } from 'vuex'
 export default {
   setup() {
     const store = useStore()
-    const song = ref()
+    const song = ref(store.state.newSong)
     const isPlaying = ref(false)
     const nowPlaying = ref(true)
     const audioLoaded = ref(false)
@@ -178,6 +178,7 @@ export default {
     }
 
     onMounted(() => {
+      console.log(store.state.newSong)
       timeUpdate()
       const audio = song.value
       if(store.state.playState === 'pause') {

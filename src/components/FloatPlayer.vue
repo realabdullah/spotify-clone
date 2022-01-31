@@ -1,9 +1,12 @@
 <template>
   <div class="now__playing">
+    <!-- <div @input="setMusic($event.target.innerText)">
+      {{ song }}
+    </div> -->
     <audio @canplay="musicReady" @timeupdate="timeUpdate" ref="song" preload="metadata" loop>
       <source src="../assets/music/chopnpray.mp3" type="audio/mpeg" />
     </audio>
-    <div @click="openNP" v-on:click="$emit('view', nowPlaying)" class="now__playing__song">
+    <div @click="openNP" v-on:click="$emit('view', {a: nowPlaying, b: song})" class="now__playing__song">
       <img src="https://www.bellanaija.com/wp-content/uploads/2020/11/Wurld-Afrosoul-Deluxe.jpg" alt="lauv">
       <div class="now__playing__details">
         <p class="now__playing__title">CHOP N PRAY</p>
@@ -40,6 +43,7 @@ export default {
     const store = useStore()
     const song = ref()
     const nowPlaying = ref(false)
+    const thought = ref()
 
     const openNP = () => {
       nowPlaying.value = true
