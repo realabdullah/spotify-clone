@@ -13,8 +13,10 @@ const numb = ref(0)
 export default createStore({
   state: {
     numb: 0,
+    songDuration: '00:00',
     newDuration: '00:00',
     song: '',
+    progress: '',
     playState: 'play',
     isPlaying: false,
     musicArray: [
@@ -51,26 +53,36 @@ export default createStore({
     ]
   },
   mutations: {
+    SONG_DURATION(state, payload) {
+      state.songDuration = payload
+    },
     UPDATE_TIME(state, payload) {
       state.newDuration = payload
     }
   },
   actions: {
     // Get the total duration of the music
-    getDuration() {
-      const audio = song.value
+    getDuration({state}, song) {
+      const audio = song
       const time = audio.duration
-      progress.value = time
-      // total duration in seconds
-      songDuration.value = convertToHMS(time)
+      state.progress = time
+      this.dispatch('convertTD', time)
+    },
+
+    convertTD({commit}, value) {
+      let time = ''
+      let m = Math.floor(value / 60)
+      m = (m >= 10) ? m : "0" + m
+      let s = Math.floor(value % 60)
+      s = (s >= 10) ? s : "0" + s
+      time = m + ':' + s
+      commit('SONG_DURATION', time)
+      return time
     },
 
     //ms to hr, mins & sec
     convertToHMS({commit, state}, value) {
-      console.log(value)
       let time = ''
-      // let h = parseInt(value / 3600)
-      // value %= 3600
       let m = Math.floor(value / 60)
       m = (m >= 10) ? m : "0" + m
       let s = Math.floor(value % 60)
@@ -90,7 +102,7 @@ export default createStore({
     timeUpdate({ state }, song) {
       const audio = song
       state.numb = audio.currentTime
-      let wDuration = this.dispatch('convertToHMS', state.numb)
+      this.dispatch('convertToHMS', state.numb)
     },
 
     //skipping music

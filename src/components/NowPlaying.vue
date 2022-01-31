@@ -111,9 +111,6 @@ export default {
     const isPlaying = ref(false)
     const nowPlaying = ref(true)
     const audioLoaded = ref(false)
-    const songDuration = ref('00:00')
-    // const newDuration = ref('00:00')
-    const progress = ref(0)
     const canplay = ref(false)
     const numb = ref(0)
 
@@ -127,12 +124,16 @@ export default {
 
     // Get the total duration of the music
     const getDuration = () => {
-      const audio = song.value
-      const time = audio.duration
-      progress.value = time
-      // total duration in seconds
-      songDuration.value = convertToHMS(time)
+      store.dispatch('getDuration', song.value)
     }
+
+    const progress = computed(() => {
+      return store.state.progress
+    })
+
+    const songDuration = computed(() => {
+      return store.state.songDuration
+    })
 
     //is music ready to play
     const musicReady = () => {
