@@ -43,7 +43,6 @@ export default {
     const store = useStore()
     const song = ref()
     const nowPlaying = ref(false)
-    const thought = ref()
 
     const openNP = () => {
       nowPlaying.value = true
@@ -53,10 +52,10 @@ export default {
       return store.state.isPlaying
     })
 
-    //played time
-    const timeUpdate = () => {
-      store.dispatch('timeUpdate', song.value)
-    }
+    // //played time
+    // const timeUpdate = () => {
+    //   store.dispatch('timeUpdate', song.value)
+    // }
 
     const playMusic = () => {
       const audio = song.value
@@ -75,7 +74,7 @@ export default {
       playPause,
       openNP,
       nowPlaying,
-      timeUpdate
+      // timeUpdate
     }
   }
 }

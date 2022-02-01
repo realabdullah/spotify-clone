@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUpdated } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
@@ -143,7 +143,7 @@ export default {
 
     //played time
     const timeUpdate = () => {
-      store.dispatch('timeUpdate', song.value)
+      store.dispatch('timeUpdate')
     }
 
     const newDuration = computed(() => {
@@ -188,6 +188,10 @@ export default {
       }
     })
     
+    onUpdated(() => {
+      console.log('Im updating')
+      timeUpdate()
+    })
 
     return {
       progress,

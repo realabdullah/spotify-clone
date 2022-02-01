@@ -104,8 +104,9 @@ export default createStore({
     },
 
     //played time
-    timeUpdate({ state }, song) {
-      const audio = song
+    timeUpdate({ state }) {
+      console.log(state.newSong)
+      const audio = state.newSong
       state.numb = audio.currentTime
       this.dispatch('convertToHMS', state.numb)
     },
