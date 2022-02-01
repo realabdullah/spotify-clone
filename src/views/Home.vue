@@ -195,8 +195,8 @@ export default {
       nowPlaying.value = open.a
       songg.value = open.b
       store.state.newSong = songg.value
-      console.log(store.state.newSong)
-      console.log(nowPlaying.value)
+      // console.log(store.state.newSong)
+      // console.log(nowPlaying.value)
     }
 
     const closeNP = (close) => {

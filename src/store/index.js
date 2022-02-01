@@ -105,7 +105,7 @@ export default createStore({
 
     //played time
     timeUpdate({ state }) {
-      console.log(state.newSong)
+      // console.log(state.newSong)
       const audio = state.newSong
       state.numb = audio.currentTime
       this.dispatch('convertToHMS', state.numb)
@@ -128,14 +128,14 @@ export default createStore({
       playAudio
       commit('IS_PLAYING', true)
       commit('PLAY_STATE', 'pause')
-      console.log('play')
+      // console.log('play')
     },
 
     pauseMusic({commit}, pauseAudio) {
       pauseAudio
       commit('IS_PLAYING', false)
       commit('PLAY_STATE', 'play')
-      console.log('pause')
+      // console.log('pause')
     },
 
     isAudioLoaded() {
