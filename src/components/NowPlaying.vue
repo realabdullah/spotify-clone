@@ -154,11 +154,7 @@ export default {
     }
 
     const pauseMusic = () => {
-      const audio = song.value
-      if(store.state.playState === 'pause') {
-        store.dispatch('pauseMusic', audio.pause())
-        store.state.playState = 'play'
-      }
+      store.dispatch('pauseMusic')
     }
 
     onMounted(() => {

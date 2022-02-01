@@ -21,7 +21,7 @@
         <circle cx="15.5" cy="7.98936" r="0.75" fill="white"/>
         <rect x="11.5" y="5.5" width="8" height="13" rx="0.5" stroke="white"/>
       </svg>
-      <svg v-if="playPause" @click="playMusic" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg v-if="playPause" @click="pauseMusic" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 3H5V21H9V3Z" fill="white"/>
         <path d="M19 3H15V21H19V3Z" fill="white"/>
       </svg>
@@ -68,19 +68,17 @@ export default {
     }
 
     const playMusic = () => {
-      const audio = song.value
-      if(store.state.playState === 'play') {
-        store.dispatch('playMusic', audio.play())
-        store.state.playState = 'pause'
-      } else if(store.state.playState === 'pause') {
-        store.dispatch('pauseMusic', audio.pause())
-        store.state.playState = 'play'
-      }
+      store.dispatch('playMusic')
+    }
+
+    const pauseMusic = () => {
+      store.dispatch('pauseMusic')
     }
 
     return {
       musicReady,
       playMusic,
+      pauseMusic,
       song,
       playPause,
       openNP,

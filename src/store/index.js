@@ -132,11 +132,12 @@ export default createStore({
       console.log('play')
     },
 
-    pauseMusic({commit}, pauseAudio) {
-      pauseAudio
+    pauseMusic({commit, state}) {
+      const audio = state.newSong
+      audio.pause()
       commit('IS_PLAYING', false)
       commit('PLAY_STATE', 'play')
-      // console.log('pause')
+      console.log('pause')
     },
 
     isAudioLoaded() {
