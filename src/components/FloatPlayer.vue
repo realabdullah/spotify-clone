@@ -52,10 +52,10 @@ export default {
       return store.state.isPlaying
     })
 
-    // //played time
-    // const timeUpdate = () => {
-    //   store.dispatch('timeUpdate', song.value)
-    // }
+    //played time
+    const timeUpdate = () => {
+      store.dispatch('timeUpdate')
+    }
 
     const playMusic = () => {
       const audio = song.value
@@ -74,7 +74,7 @@ export default {
       playPause,
       openNP,
       nowPlaying,
-      // timeUpdate
+      timeUpdate
     }
   }
 }
