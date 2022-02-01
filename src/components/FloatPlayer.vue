@@ -52,6 +52,16 @@ export default {
       return store.state.isPlaying
     })
 
+    // Get the total duration of the music
+    const musicReady = () => {
+      store.state.newSong = song.value
+      store.dispatch('musicReady')
+    }
+
+    // const songDuration = computed(() => {
+    //   return store.state.songDuration
+    // })
+
     //played time
     const timeUpdate = () => {
       store.dispatch('timeUpdate')
@@ -69,6 +79,7 @@ export default {
     }
 
     return {
+      musicReady,
       playMusic,
       song,
       playPause,

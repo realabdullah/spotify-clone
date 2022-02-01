@@ -111,7 +111,6 @@ export default {
     const isPlaying = ref(false)
     const nowPlaying = ref(true)
     const audioLoaded = ref(false)
-    const canplay = ref(false)
     const numb = ref(0)
 
     const closeNP = () => {
@@ -122,11 +121,6 @@ export default {
       return store.state.isPlaying
     })
 
-    // Get the total duration of the music
-    const getDuration = () => {
-      store.dispatch('getDuration', song.value)
-    }
-
     const progress = computed(() => {
       return store.state.progress
     })
@@ -134,17 +128,6 @@ export default {
     const songDuration = computed(() => {
       return store.state.songDuration
     })
-
-    //is music ready to play
-    const musicReady = () => {
-      canplay.value = true
-      getDuration()
-    }
-
-    //played time
-    const timeUpdate = () => {
-      store.dispatch('timeUpdate')
-    }
 
     const newDuration = computed(() => {
       return store.state.newDuration
@@ -167,11 +150,7 @@ export default {
     }
 
     const playMusic = () => {
-      const audio = song.value
-      if(store.state.playState === 'play') {
-        store.dispatch('playMusic', audio.play())
-        store.state.playState = 'pause'
-      }
+      store.dispatch('playMusic')
     }
 
     const pauseMusic = () => {
@@ -183,8 +162,6 @@ export default {
     }
 
     onMounted(() => {
-      console.log(store.state.newSong)
-      timeUpdate()
       const audio = song.value
       if(store.state.playState === 'pause') {
         store.dispatch('playMusic', audio.play())
@@ -192,17 +169,10 @@ export default {
         store.state.playState = 'play'
       }
     })
-    
-    // onUpdated(() => {
-    //   console.log('Im updating')
-    //   timeUpdate()
-    // })
 
     return {
       progress,
       numb,
-      musicReady,
-      timeUpdate,
       playPause,
       closeNP,
       nowPlaying,

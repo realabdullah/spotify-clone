@@ -67,14 +67,14 @@ export default createStore({
   },
   actions: {
     // Get the total duration of the music
-    getDuration({state}, song) {
-      const audio = song
+    getDuration({state}) {
+      const audio = state.newSong
       const time = audio.duration
       state.progress = time
       this.dispatch('convertTD', time)
     },
 
-    convertTD({commit}, value) {
+    convertTD({commit, state}, value) {
       let time = ''
       let m = Math.floor(value / 60)
       m = (m >= 10) ? m : "0" + m
@@ -100,7 +100,7 @@ export default createStore({
     //is music ready to play
     musicReady() {
       canplay.value = true
-      getDuration()
+      this.dispatch('getDuration')
     },
 
     //played time
@@ -124,11 +124,12 @@ export default createStore({
     },
 
     //music playback
-    playMusic({commit}, playAudio) {
-      playAudio
+    playMusic({commit, state}) {
+      const audio = state.newSong
+      audio.play()
       commit('IS_PLAYING', true)
       commit('PLAY_STATE', 'pause')
-      // console.log('play')
+      console.log('play')
     },
 
     pauseMusic({commit}, pauseAudio) {
