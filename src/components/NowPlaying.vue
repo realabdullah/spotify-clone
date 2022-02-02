@@ -158,9 +158,9 @@ export default {
       store.dispatch('pauseMusic')
     }
 
-    onBeforeMount(() => {
-      playMusic()
-    })
+    // onBeforeMount(() => {
+    //   playMusic()
+    // })
 
     return {
       progress,
