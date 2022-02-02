@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted, onUpdated } from 'vue'
+import { ref, computed, onBeforeMount, onUpdated } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
@@ -151,19 +151,15 @@ export default {
 
     const playMusic = () => {
       store.dispatch('playMusic')
+      console.log('playing seh')
     }
 
     const pauseMusic = () => {
       store.dispatch('pauseMusic')
     }
 
-    onMounted(() => {
-      const audio = song.value
-      if(store.state.playState === 'pause') {
-        store.dispatch('playMusic', audio.play())
-        console.log('Im playing oh ah')
-        store.state.playState = 'play'
-      }
+    onBeforeMount(() => {
+      playMusic()
     })
 
     return {
