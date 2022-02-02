@@ -42,12 +42,6 @@ export default createStore({
         name: 'Somebody',
         artist: 'Pheelz',
         song_url: '../assets/music/somebody.mp3'
-      },
-      {
-        cover: 'https://www.bellanaija.com/wp-content/uploads/2020/11/Wurld-Afrosoul-Deluxe.jpg',
-        name: 'CHOP N PRAY',
-        artist: 'WurlD',
-        song_url: '../assets/music/chopnpray.mp3'
       }
     ]
   },
