@@ -210,6 +210,7 @@ export default {
     const getTime = () => {
       const today = new Date()
       const time = today.getHours()
+      console.log(time)
       if(time < 12) {
         greeting.value = 'Good morning'
       }
