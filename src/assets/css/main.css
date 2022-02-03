@@ -251,8 +251,8 @@ body {
   background: var(--charlestongreen);
   border-radius: 8px;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: stretch;
+  /* justify-content: flex-start; */
 }
 
 .nw__img {
@@ -264,6 +264,7 @@ body {
 .new__songs img {
   width: 100%;
   height: 100%;
+  border-radius: 8px 0 0 8px;
 }
 
 .new__songs__details {
@@ -279,11 +280,6 @@ body {
   display: flex;
   align-items: stretch;
   /* justify-content: flex-start; */
-}
-
-.new__album img {
-  width: 170px;
-  border-radius: 8px 0 0 8px;
 }
 
 .new__album__details {
