@@ -138,14 +138,7 @@ export default {
 
     //skipping music
     const skipValue = () => {
-      const audio = song.value
-      if (audio.paused || audio.currentTime != 0) {
-        audio.currentTime = numb.value
-        if (numb.value == Math.floor(progress.value)) {
-          audio.pause()
-          isPlaying.value = false
-        }
-      }
+      store.dispatch('skipValue')
     }
 
     const isAudioLoaded = () => {

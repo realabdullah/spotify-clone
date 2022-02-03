@@ -106,7 +106,7 @@ export default createStore({
     },
 
     //ms to hr, mins & sec
-    convertToHMS({commit, state}, value) {
+    convertToHMS({state}, value) {
       let time = ''
       let m = Math.floor(value / 60)
       m = (m >= 10) ? m : "0" + m
@@ -132,19 +132,19 @@ export default createStore({
     },
 
     //skipping music
-    skipValue() {
-      const audio = song.value
+    skipValue({ state }) {
+      const audio = state.newSong
       if (audio.paused || audio.currentTime != 0) {
-        audio.currentTime = numb.value
-        if (numb.value == Math.floor(progress.value)) {
+        audio.currentTime = state.numb
+        if (state.numb == Math.floor(state.progress)) {
           audio.pause()
-          isPlaying.value = false
+          this.commit('IS_PLAYING', false)
         }
       }
     },
 
     //music playback
-    playMusic({commit, state}) {
+    playMusic({state}) {
       const audio = state.newSong
       audio.play()
       this.commit('IS_PLAYING', true)
@@ -152,7 +152,7 @@ export default createStore({
       console.log('play')
     },
 
-    pauseMusic({commit, state}) {
+    pauseMusic({state}) {
       const audio = state.newSong
       audio.pause()
       this.commit('IS_PLAYING', false)
