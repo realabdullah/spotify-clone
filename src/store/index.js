@@ -79,6 +79,9 @@ export default createStore({
     },
     PLAY_STATE(state, payload) {
       state.playState = payload
+    },
+    UPDATE_PROGRESS(state, payload) {
+      state.progress = payload
     }
   },
   actions: {
@@ -86,7 +89,8 @@ export default createStore({
     getDuration({state}) {
       const audio = state.newSong
       const time = audio.duration
-      state.progress = time
+      const progress = time
+      this.commit('UPDATE_PROGRESS', progress)
       this.dispatch('convertTD', time)
     },
 
@@ -97,7 +101,7 @@ export default createStore({
       let s = Math.floor(value % 60)
       s = (s >= 10) ? s : "0" + s
       time = m + ':' + s
-      commit('SONG_DURATION', time)
+      this.commit('SONG_DURATION', time)
       return time
     },
 
@@ -109,7 +113,7 @@ export default createStore({
       let s = Math.floor(value % 60)
       s = (s >= 10) ? s : "0" + s
       time = m + ':' + s
-      commit('UPDATE_TIME', time)
+      this.commit('UPDATE_TIME', time)
       return time
     },
 
@@ -143,16 +147,16 @@ export default createStore({
     playMusic({commit, state}) {
       const audio = state.newSong
       audio.play()
-      commit('IS_PLAYING', true)
-      commit('PLAY_STATE', 'pause')
+      this.commit('IS_PLAYING', true)
+      this.commit('PLAY_STATE', 'pause')
       console.log('play')
     },
 
     pauseMusic({commit, state}) {
       const audio = state.newSong
       audio.pause()
-      commit('IS_PLAYING', false)
-      commit('PLAY_STATE', 'play')
+      this.commit('IS_PLAYING', false)
+      this.commit('PLAY_STATE', 'play')
       console.log('pause')
     },
 

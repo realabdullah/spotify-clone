@@ -111,7 +111,6 @@ export default {
     const isPlaying = ref(false)
     const nowPlaying = ref(true)
     const audioLoaded = ref(false)
-    const numb = ref(0)
 
     const closeNP = () => {
       nowPlaying.value = false
@@ -131,6 +130,10 @@ export default {
 
     const newDuration = computed(() => {
       return store.state.newDuration
+    })
+
+    const numb = computed(() => {
+      return store.state.numb
     })
 
     //skipping music
