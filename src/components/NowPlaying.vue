@@ -17,7 +17,7 @@
     </div>
     <div class="playing__details">
       <div class="track__cover">
-        <img src="https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg" alt="lauv">
+        <img src="https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg" @load="getPalette" ref="image" alt="lauv">
       </div>
       <div class="track__details">
         <div class="track__author">
@@ -101,7 +101,8 @@
 </template>
 
 <script>
-import { ref, computed, onBeforeMount, onUpdated } from 'vue'
+import Vibrant from 'node-vibrant'
+import { ref, computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
@@ -111,6 +112,9 @@ export default {
     const isPlaying = ref(false)
     const nowPlaying = ref(true)
     const audioLoaded = ref(false)
+    const progress = ref(store.state.progress)
+    const numb = ref(store.state.numb)
+    const image = ref()
 
     const closeNP = () => {
       nowPlaying.value = false
@@ -120,9 +124,11 @@ export default {
       return store.state.isPlaying
     })
 
-    const progress = computed(() => {
-      return store.state.progress
-    })
+    // progress.value = store.state.progress
+
+    // const progress = computed(() => {
+    //   return store.state.progress
+    // })
 
     const songDuration = computed(() => {
       return store.state.songDuration
@@ -132,9 +138,9 @@ export default {
       return store.state.newDuration
     })
 
-    const numb = computed(() => {
-      return store.state.numb
-    })
+    // const numb = computed(() => {
+    //   return store.state.numb
+    // })
 
     //skipping music
     const skipValue = () => {
@@ -153,12 +159,26 @@ export default {
     const pauseMusic = () => {
       store.dispatch('pauseMusic')
     }
+    
+    //get color palette
+    const getPalette = () => {
+      const vibrant = new Vibrant(image.value)
 
-    // onBeforeMount(() => {
-    //   playMusic()
+      vibrant.getPalette().then(
+        (palette) => console.log(`palette`, palette),
+        (reason) => {
+          console.error(reason)
+        }
+      )
+    }
+
+    // onMounted(() => {
+    //   getPalette()
     // })
 
     return {
+      getPalette,
+      image,
       progress,
       numb,
       playPause,

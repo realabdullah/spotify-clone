@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
@@ -74,6 +74,10 @@ export default {
     const pauseMusic = () => {
       store.dispatch('pauseMusic')
     }
+
+    onMounted(() => {
+      store.state.newSong = song.value
+    })
 
     return {
       musicReady,
