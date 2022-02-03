@@ -179,7 +179,7 @@ body {
 
 .__greeting p {
   color: var(--white);
-  font-size: 1.438rem;
+  font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -2.5%;
 }
@@ -228,7 +228,7 @@ body {
 
 .mix__grid li p {
   padding-left: 8px;
-  font-size: 0.813rem;
+  font-size: 0.47rem;
   font-weight: 700;
   color: var(--white);
   text-transform: capitalize;
@@ -240,7 +240,7 @@ body {
 }
 
 .new__songs__header p {
-  font-size: 1.375rem;
+  font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -0.5%;
   color: var(--white);
@@ -256,7 +256,7 @@ body {
 }
 
 .nw__img {
-  width: 400px;
+  width: 250px;
   height: 170px;
   border-radius: 8px 0 0 8px;
 }
@@ -290,7 +290,7 @@ body {
 }
 
 .__title {
-  font-weight: 0.813rem;
+  font-size: 0.57rem;
   font-weight: 700;
   letter-spacing: 3%;
   color: var(--white);
@@ -298,7 +298,7 @@ body {
 }
 
 .__info {
-  font-weight: 0.813rem;
+  font-size: 0.57rem;
   font-weight: 600;
   line-height: 1.3rem;
   color: var(--quicksilver);
@@ -316,7 +316,7 @@ body {
 }
 
 .podcast__header p {
-  font-size: 1.375rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: -0.5%;
   color: var(--white);
@@ -363,6 +363,7 @@ body {
 
 .footer__nav ul li a span {
   padding-top: 7px;
+  font-size: 0.6rem;
 }
 
 .now__playing {
@@ -424,7 +425,7 @@ body {
 }
 
 .thats__all p {
-  font-size: 1.375rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: -0.5%;
   color: var(--quicksilver);
@@ -456,7 +457,7 @@ a {
 } */
 
 .playing__header p {
-  font-size: 0.813rem;
+  font-size: 0.5rem;
   font-weight: 700;
   letter-spacing: -1.5%;
   color: var(--white);
@@ -488,7 +489,7 @@ a {
 }
 
 .track__title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--white);
   letter-spacing: -5%;
@@ -533,7 +534,7 @@ a {
 .time__left span {
   font-family: 'Montserrat', sans-serif;
   color: var(--palesilver);
-  font-size: 0.813rem;
+  font-size: 0.6rem;
   font-weight: 300;
 }
 
@@ -577,7 +578,7 @@ a {
 }
 
 .album__title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--white);
   letter-spacing: -5%;
@@ -598,7 +599,7 @@ a {
 }
 
 .album__artist {
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: var(--white);
   letter-spacing: -1%;
@@ -610,7 +611,7 @@ a {
 }
 
 .album__year p {
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-weight: 400;
   color: var(--blackshadows);
   letter-spacing: -1%;
@@ -652,14 +653,14 @@ a {
 
 .song_title {
   padding-bottom: 5px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--white);
   letter-spacing: -1%;
 }
 
 .song__artist {
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--blackshadows);
   letter-spacing: -1%;
@@ -731,13 +732,13 @@ a {
 .now__playing__title {
   padding-bottom: 7px;
   color: var(--white);
-  font-weight: 0.813rem;
+  font-size: 0.513rem;
   letter-spacing: -3%;
 }
 
 .now__playing__artiste {
   color: var(--blackshadows);
-  font-weight: 0.813rem;
+  font-size: 0.513rem;
   letter-spacing: -3%;
 }
 
