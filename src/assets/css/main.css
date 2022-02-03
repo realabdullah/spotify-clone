@@ -255,9 +255,15 @@ body {
   justify-content: flex-start;
 }
 
-.new__songs img {
-  width: 170px;
+.nw__img {
+  width: 400px;
+  height: 170px;
   border-radius: 8px 0 0 8px;
+}
+
+.new__songs img {
+  width: 100%;
+  height: 100%;
 }
 
 .new__songs__details {
@@ -271,8 +277,8 @@ body {
   background: var(--charlestongreen);
   border-radius: 8px;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: stretch;
+  /* justify-content: flex-start; */
 }
 
 .new__album img {

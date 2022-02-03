@@ -58,7 +58,9 @@
         <p>New songs added</p>
       </div>
       <div class="new__songs">
-        <img src="../assets/visuals/cover-image.png" alt="newsongs">
+        <div class="nw__img">
+          <img src="https://i.scdn.co/image/8fb70050bcf7955842d53918bd647407b97a206b" alt="newsongs">
+        </div>
         <div class="new__songs__details">
           <p class="__title">Viral hits</p>
           <p class="__info">Playlist • The Kid LAROI, Olivia Rodrigo, Ariana Grande.</p>
@@ -77,7 +79,9 @@
         <p>New album added</p>
       </div>
       <div class="new__album">
-        <img @click="viewAlbum" src="https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg" alt="newsongs">
+        <div class="nw__img">
+          <img @click="viewAlbum" src="https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg" alt="newsongs">
+        </div>
         <div class="new__album__details">
           <p @click="viewAlbum" class="__title">Hear Me Out</p>
           <p class="__info">Pheelz • Somebody, Many Men, La Vida, One Life..</p>
