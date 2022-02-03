@@ -1,21 +1,21 @@
 <template>
-  <div class="__album">
+  <div class="__album" v-for="details in album">
+    <div @click="closeAlbum" v-on:click="$emit('view', viewAlbum)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 7L12.5 17L21 7" stroke="white"/>
+      </svg>
+    </div>
     <div class="album__cover">
-      <div @click="closeAlbum" v-on:click="$emit('view', viewAlbum)">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 7L12.5 17L21 7" stroke="white"/>
-        </svg>
-      </div>
-      <img src="https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg" alt="her">
+      <img :src="details.album_details.cover" alt="her">
     </div>
     <div class="album__details">
-      <p class="album__title">Hear Me Out</p>
+      <p class="album__title">{{ details.album_details.name }}</p>
       <div class="album__meta">
-        <img src="https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg" alt="artist">
-        <p class="album__artist">Pheelz</p>
+        <img :src="details.album_details.cover" alt="artist">
+        <p class="album__artist">{{ details.album_details.artist }}</p>
       </div>
       <div class="album__year">
-        <p>Album • 2020</p>
+        <p>Album • {{ details.album_details.year }}</p>
       </div>
       <div class="album__cta">
         <div class="cta__svg">
@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="album__songs">
-        <div v-for="song in album" class="album__song">
+        <div v-for="song in details.track_list" class="album__song">
           <div class="song__details">
             <p class="song_title">{{ song.name }}</p>
             <p class="song__artist">{{ song.artist }}</p>
@@ -90,6 +90,7 @@ export default {
     const store = useStore()
 
     const album = computed(() => {
+      console.log(store.state.musicArray)
       return store.state.musicArray
     })
 

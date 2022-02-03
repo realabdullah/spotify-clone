@@ -20,28 +20,50 @@ export default createStore({
     isPlaying: false,
     musicArray: [
       {
-        cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
-        name: 'La Vida',
-        artist: 'Pheelz',
-        song_url: '../assets/music/lavida.mp3'
-      },
-      {
-        cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
-        name: 'Many Men',
-        artist: 'Pheelz',
-        song_url: '../assets/music/manymen.mp3'
-      },
-      {
-        cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
-        name: 'One Life',
-        artist: 'Pheelz',
-        song_url: '../assets/music/onelife.mp3'
-      },
-      {
-        cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
-        name: 'Somebody',
-        artist: 'Pheelz',
-        song_url: '../assets/music/somebody.mp3'
+        album_details: {
+          name: 'Hear Me Out',
+          artist: 'Pheelz',
+          year: 2020,
+          cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg'
+        },
+        track_list: [
+          {
+            id: 1,
+            cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
+            name: 'La Vida',
+            album_name: 'Hear Me Out',
+            artist: 'Pheelz',
+            song_url: '../assets/music/lavida.mp3',
+            year: 2020
+          },
+          {
+            id: 2,
+            cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
+            name: 'Many Men',
+            album_name: 'Hear Me Out',
+            artist: 'Pheelz',
+            song_url: '../assets/music/manymen.mp3',
+            year: 2020
+          },
+          {
+            id: 3,
+            cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
+            name: 'One Life',
+            album_name: 'Hear Me Out',
+            artist: 'Pheelz',
+            song_url: '../assets/music/onelife.mp3',
+            year: 2020
+          },
+          {
+            id: 4,
+            cover: 'https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg',
+            name: 'Somebody',
+            album_name: 'Hear Me Out',
+            artist: 'Pheelz',
+            song_url: '../assets/music/somebody.mp3',
+            year: 2020
+          }
+        ]
       }
     ]
   },

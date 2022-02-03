@@ -77,7 +77,7 @@
         <p>New album added</p>
       </div>
       <div class="new__album">
-        <img @click="viewAlbum" src="../assets/visuals/cover-image.png" alt="newsongs">
+        <img @click="viewAlbum" src="https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg" alt="newsongs">
         <div class="new__album__details">
           <p @click="viewAlbum" class="__title">Hear Me Out</p>
           <p class="__info">Pheelz • Somebody, Many Men, La Vida, One Life..</p>

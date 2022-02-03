@@ -256,7 +256,7 @@ body {
 }
 
 .new__songs img {
-  width: 100%;
+  width: 170px;
   border-radius: 8px 0 0 8px;
 }
 
@@ -276,7 +276,7 @@ body {
 }
 
 .new__album img {
-  width: 100%;
+  width: 170px;
   border-radius: 8px 0 0 8px;
 }
 
@@ -556,6 +556,7 @@ a {
     , rgba(18,18,18,1) 0%, #1212129e 100%);
   height: 100vh;
   padding: 1.875rem 1.25rem;
+  padding-bottom: 6rem;
   display: flex;
   flex-direction: column;
 }
@@ -564,13 +565,9 @@ a {
   width: 250px;
   padding-bottom: 20px;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  /* margin: 0 auto; */
-}
-
-.album__cover div {
-  margin-right: 40px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .album__cover img {
