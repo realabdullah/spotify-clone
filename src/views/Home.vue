@@ -210,11 +210,10 @@ export default {
     const getTime = () => {
       const today = new Date()
       const time = today.getHours()
-      console.log(time)
       if(time < 12) {
         greeting.value = 'Good morning'
       }
-      else if(time > 12) {
+      else if(time > 12 && time < 16) {
         greeting.value = 'Good afternoon'
       }
       else if(time > 16) {
