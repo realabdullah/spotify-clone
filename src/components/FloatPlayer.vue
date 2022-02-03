@@ -4,13 +4,13 @@
       {{ song }}
     </div> -->
     <audio @canplay="musicReady" @timeupdate="timeUpdate" ref="song" preload="metadata" loop>
-      <source src="../assets/music/chopnpray.mp3" type="audio/mpeg" />
+      <source src="../assets/music/lavida.mp3" type="audio/mpeg" />
     </audio>
     <div @click="openNP" v-on:click="$emit('view', {a: nowPlaying, b: song})" class="now__playing__song">
-      <img src="https://www.bellanaija.com/wp-content/uploads/2020/11/Wurld-Afrosoul-Deluxe.jpg" alt="lauv">
+      <img src="https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg" alt="lauv">
       <div class="now__playing__details">
-        <p class="now__playing__title">CHOP N PRAY</p>
-        <p class="now__playing__artiste">WurlD</p>
+        <p class="now__playing__title">La Vida</p>
+        <p class="now__playing__artiste">Pheelz</p>
       </div>
     </div>
     <div class="now__playing__ctas">

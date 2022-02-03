@@ -6,7 +6,7 @@
           <path d="M4 7L12.5 17L21 7" stroke="white"/>
         </svg>
       </div>
-      <p>Playling from AFROSOUL</p>
+      <p>Playling from HEAR ME OUT</p>
       <div class="__more">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="4.5" cy="12.5" r="1.5" fill="white"/>
@@ -17,12 +17,12 @@
     </div>
     <div class="playing__details">
       <div class="track__cover">
-        <img src="https://www.bellanaija.com/wp-content/uploads/2020/11/Wurld-Afrosoul-Deluxe.jpg" alt="lauv">
+        <img src="https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg" alt="lauv">
       </div>
       <div class="track__details">
         <div class="track__author">
-          <p class="track__title">CHOP N PRAY</p>
-          <p class="track__artist">WurlD</p>
+          <p class="track__title">La Vida</p>
+          <p class="track__artist">Pheelz</p>
         </div>
         <div class="__fav">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
