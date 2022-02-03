@@ -172,10 +172,6 @@ export default {
       )
     }
 
-    // onMounted(() => {
-    //   getPalette()
-    // })
-
     return {
       getPalette,
       image,
