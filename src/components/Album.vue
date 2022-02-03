@@ -29,9 +29,17 @@
           </svg>
         </div>
         <div class="album__play">
-          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M30 60C46.5685 60 60 46.5685 60 30C60 13.4315 46.5685 0 30 0C13.4315 0 0 13.4315 0 30C0 46.5685 13.4315 60 30 60ZM21 18C20.4477 18 20 18.4477 20 19V41C20 41.5523 20.4477 42 21 42H25C25.5523 42 26 41.5523 26 41V19C26 18.4477 25.5523 18 25 18H21ZM35 18C34.4477 18 34 18.4477 34 19V41C34 41.5523 34.4477 42 35 42H39C39.5523 42 40 41.5523 40 41V19C40 18.4477 39.5523 18 39 18H35Z" fill="#84B963"/>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" id="SvgjsSvg1001" width="60" height="60" version="1.1"><defs id="SvgjsDefs1002"/>
+            <g id="SvgjsG1008" transform="matrix(1,0,0,1,0,0)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 48 48">
+                <path fill="none" d="M0 0h48v48H0z"/>
+                <path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm-4 29V15l12 9-12 9z" fill="#84b963" class="color000 svgShape"/>
+              </svg>
+            </g>
           </svg>
+          <!-- <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M30 60C46.5685 60 60 46.5685 60 30C60 13.4315 46.5685 0 30 0C13.4315 0 0 13.4315 0 30C0 46.5685 13.4315 60 30 60ZM21 18C20.4477 18 20 18.4477 20 19V41C20 41.5523 20.4477 42 21 42H25C25.5523 42 26 41.5523 26 41V19C26 18.4477 25.5523 18 25 18H21ZM35 18C34.4477 18 34 18.4477 34 19V41C34 41.5523 34.4477 42 35 42H39C39.5523 42 40 41.5523 40 41V19C40 18.4477 39.5523 18 39 18H35Z" fill="#84B963"/>
+          </svg> -->
         </div>
       </div>
       <div class="album__songs">
