@@ -162,7 +162,7 @@
     </div>
     <Album @view="closeAlbum" v-if="albumView && !nowPlaying" />
     <NowPlaying :songg="songg" @view="closeNP" v-if="nowPlaying" />
-    <FloatPlayer v-if="songUrl !== null" @view="openNP" />
+    <FloatPlayer @view="openNP" />
   </div>
 </template>
 

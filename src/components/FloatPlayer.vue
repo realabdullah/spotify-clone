@@ -103,10 +103,12 @@ export default {
     }
 
     onMounted(() => {
+      store.state.newSong = song.value
       console.log(song.value)
     })
 
     onUpdated(() => {
+      store.state.newSong = song.value
       console.log(song.value)
       if(store.state.isPlaying == true) {
         store.dispatch('playMusic')

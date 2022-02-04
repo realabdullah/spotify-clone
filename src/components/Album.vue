@@ -1,7 +1,7 @@
 <template>
   <div style="display
   : none;">
-    {{ song }}
+    {{ songe }}
   </div>
   <div class="__album" v-for="details in album">
     <div @click="closeAlbum" v-on:click="$emit('view', viewAlbum)">
@@ -100,7 +100,7 @@ import { useStore } from 'vuex'
 export default {
   setup() {
     const store = useStore()
-    const song = ref(store.state.newSong)
+    const songe = ref(store.state.newSong)
 
     const album = computed(() => {
       console.log(store.state.musicArray)
@@ -115,6 +115,7 @@ export default {
 
     const play = (song) => {
       store.dispatch('playSolo', song)
+      console.log(songe.value)
       store.dispatch('playMusic')
     }
 
@@ -123,7 +124,7 @@ export default {
     // })
 
     return {
-      song,
+      songe,
       play,
       album,
       viewAlbum,
