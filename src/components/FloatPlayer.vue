@@ -4,7 +4,7 @@
       {{ song }}
     </div> -->
     <audio @canplay="musicReady" @timeupdate="timeUpdate" ref="song" preload="metadata" loop>
-      <source src="../assets/music/lavida.mp3" type="audio/mpeg" />
+      <source :src="songSrc" type="audio/mpeg" />
     </audio>
     <div @click="openNP" v-on:click="$emit('view', {a: nowPlaying, b: song})" class="now__playing__song">
       <img src="https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg" alt="lauv">
@@ -43,6 +43,7 @@ export default {
   setup() {
     const store = useStore()
     const song = ref()
+    const songSrc = ref(store.state.songSrc)
     const nowPlaying = ref(false)
     const progress = ref(store.state.progress)
     const numb = ref(store.state.numb)
@@ -90,6 +91,7 @@ export default {
     // })
 
     return {
+      songSrc,
       skipValue,
       musicReady,
       playMusic,

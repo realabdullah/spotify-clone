@@ -15,6 +15,7 @@ export default createStore({
     songDuration: '00:00',
     newDuration: '00:00',
     song: '',
+    songSrc: null,
     progress: '',
     playState: 'play',
     isPlaying: false,
@@ -82,6 +83,9 @@ export default createStore({
     },
     UPDATE_PROGRESS(state, payload) {
       state.progress = payload
+    },
+    SET_SRC(state, payload) {
+      state.songSrc = payload
     }
   },
   actions: {
@@ -162,8 +166,8 @@ export default createStore({
 
     //playing single
     playSolo({state}, song) {
-      state.newSong = song
-      this.dispatch('playMusic')
+      state.songSrc = song
+      this.commit('SET_SRC', song)
     },
 
     isAudioLoaded() {

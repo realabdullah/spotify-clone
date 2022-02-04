@@ -162,7 +162,7 @@
     </div>
     <Album @view="closeAlbum" v-if="albumView && !nowPlaying" />
     <NowPlaying :songg="songg" @view="closeNP" v-if="nowPlaying" />
-    <FloatPlayer @view="openNP" />
+    <FloatPlayer v-if="songUrl !== null" @view="openNP" />
   </div>
 </template>
 
@@ -170,7 +170,7 @@
 import FloatPlayer from '../components/FloatPlayer.vue'
 import Album from '../components/Album.vue'
 import NowPlaying from '../components/NowPlaying.vue'
-import { onBeforeMount, ref } from 'vue'
+import { onBeforeMount, ref, computed } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
@@ -186,6 +186,12 @@ export default {
     const nowPlaying = ref()
     const greeting = ref()
     const songg = ref()
+    // const songUrl = ref()
+
+    const songUrl = computed(() => {
+      console.log(store.state.songSrc)
+      return store.state.songSrc
+    })
 
     const viewAlbum = () => {
       albumView.value = true
@@ -233,7 +239,8 @@ export default {
       closeAlbum,
       greeting,
       nowPlaying,
-      songg
+      songg,
+      songUrl
     }
   }
 }
