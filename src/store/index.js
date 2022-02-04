@@ -174,8 +174,6 @@ export default createStore({
       state.songArtist = song.artist
       state.songImg = song.cover
       this.commit('SET_SRC', song)
-      this.commit('IS_PLAYING', true)
-      this.commit('PLAY_STATE', 'pause')
       // this.dispatch('playMusic')
     },
 

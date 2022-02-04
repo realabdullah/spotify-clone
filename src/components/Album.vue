@@ -1,4 +1,8 @@
 <template>
+  <div style="display
+  : none;">
+    {{ song }}
+  </div>
   <div class="__album" v-for="details in album">
     <div @click="closeAlbum" v-on:click="$emit('view', viewAlbum)">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,7 +100,7 @@ import { useStore } from 'vuex'
 export default {
   setup() {
     const store = useStore()
-    const sonng = ref()
+    const song = ref(store.state.newSong)
 
     const album = computed(() => {
       console.log(store.state.musicArray)
@@ -111,9 +115,7 @@ export default {
 
     const play = (song) => {
       store.dispatch('playSolo', song)
-      console.log(song)
-      sonng.value = store.state.songSrc
-      console.log(sonng.value)
+      store.dispatch('playMusic')
     }
 
     // onBeforeMount(() => {
@@ -121,6 +123,7 @@ export default {
     // })
 
     return {
+      song,
       play,
       album,
       viewAlbum,
