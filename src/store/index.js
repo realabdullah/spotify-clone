@@ -160,6 +160,12 @@ export default createStore({
       console.log('pause')
     },
 
+    //playing single
+    playSolo({state}, song) {
+      state.newSong = song
+      this.dispatch('playMusic')
+    },
+
     isAudioLoaded() {
       audioLoaded.value = true
     }

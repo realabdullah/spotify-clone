@@ -96,6 +96,7 @@ import { useStore } from 'vuex'
 export default {
   setup() {
     const store = useStore()
+    const song = ref()
 
     const album = computed(() => {
       console.log(store.state.musicArray)
@@ -108,11 +109,17 @@ export default {
       viewAlbum.value = false
     }
 
+    const play = () => {
+      store.dispatch('playSolo', song.value)
+      console.log(song.value)
+    }
+
     // onBeforeMount(() => {
     //   console.log(album.value)
     // })
 
     return {
+      play,
       album,
       viewAlbum,
       closeAlbum
