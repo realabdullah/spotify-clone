@@ -159,6 +159,10 @@ export default {
       store.dispatch('pauseMusic')
     }
 
+    onMounted(() => {
+      console.log(song.value)
+    })
+
     return {
       image,
       progress,

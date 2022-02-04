@@ -96,6 +96,10 @@ export default {
 
     onUpdated(() => {
       console.log(song.value)
+      if(store.state.isPlaying == true) {
+        store.dispatch('playMusic')
+        console.log('im playing')
+      }
     })
 
     return {

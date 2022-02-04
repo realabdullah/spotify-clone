@@ -168,6 +168,8 @@ export default createStore({
     playSolo({state}, song) {
       state.songSrc = song
       this.commit('SET_SRC', song)
+      this.commit('IS_PLAYING', true)
+      this.commit('PLAY_STATE', 'pause')
       // this.dispatch('playMusic')
     },
 
