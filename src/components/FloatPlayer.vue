@@ -31,7 +31,7 @@
         <path fill="none" d="M0 0h48v48H0z"/></svg></g>
       </svg>
     </div>
-    <input class="styled-slider" v-model="numb" type="range" min="0" :max="progress" @input="skipValue" :style="{background: '-webkit-linear-gradient(top, #FFFFFF, #FFFFFF) 0% 0% / '+ numb*100/progress +'% 100% no-repeat'}">
+    <input v-if="playPause" class="styled-slider" v-model="numb" type="range" min="0" :max="progress" @input="skipValue" :style="{background: '-webkit-linear-gradient(top, #FFFFFF, #FFFFFF) 0% 0% / '+ numb*100/progress +'% 100% no-repeat'}">
   </div>
 </template>
 
@@ -80,11 +80,17 @@ export default {
       store.dispatch('pauseMusic')
     }
 
+    //skipping music
+    const skipValue = () => {
+      store.dispatch('skipValue')
+    }
+
     // onMounted(() => {
     //   store.state.newSong = song.value
     // })
 
     return {
+      skipValue,
       musicReady,
       playMusic,
       pauseMusic,
