@@ -855,7 +855,8 @@ input[type=range].styled-slider.slider-progress::-ms-fill-lower {
 }
 
 .__playing + .now__playing {
-  opacity: 0;
+  /* opacity: 0; */
+  display: none;
 }
 
 @media(min-width: 580px) {
