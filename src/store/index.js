@@ -168,7 +168,7 @@ export default createStore({
     playSolo({state}, song) {
       state.songSrc = song
       this.commit('SET_SRC', song)
-      this.dispatch('playMusic')
+      // this.dispatch('playMusic')
     },
 
     isAudioLoaded() {

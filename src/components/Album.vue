@@ -44,7 +44,7 @@
       </div>
       <div class="album__songs">
         <div v-for="song in details.track_list" class="album__song">
-          <div @click="play(song.song_url)" class="song__details">
+          <div @click="play(song.song_url)" v-on:click="$emit('play', playNow)" class="song__details">
             <p class="song_title">{{ song.name }}</p>
             <p class="song__artist">{{ song.artist }}</p>
           </div>
@@ -97,6 +97,7 @@ export default {
   setup() {
     const store = useStore()
     const sonng = ref()
+    const playNow = ref(true)
 
     const album = computed(() => {
       console.log(store.state.musicArray)
@@ -124,7 +125,8 @@ export default {
       play,
       album,
       viewAlbum,
-      closeAlbum
+      closeAlbum,
+      playNow
     }
   }
 }
