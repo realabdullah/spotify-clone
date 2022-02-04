@@ -36,19 +36,23 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUpdated } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
   setup() {
     const store = useStore()
     const song = ref()
-    const songSrc = ref(store.state.songSrc)
+    // const songSrc = ref(store.state.songSrc)
     const nowPlaying = ref(false)
     const progress = ref(store.state.progress)
     const numb = ref(store.state.numb)
 
     store.state.newSong = song.value
+
+    const songSrc = computed(() => {
+      return store.state.songSrc
+    })
 
     const openNP = () => {
       nowPlaying.value = true
@@ -86,9 +90,13 @@ export default {
       store.dispatch('skipValue')
     }
 
-    // onMounted(() => {
-    //   store.state.newSong = song.value
-    // })
+    onMounted(() => {
+      console.log(song.value)
+    })
+
+    onUpdated(() => {
+      console.log(song.value)
+    })
 
     return {
       songSrc,
