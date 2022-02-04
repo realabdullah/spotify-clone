@@ -859,6 +859,14 @@ input[type=range].styled-slider.slider-progress::-ms-fill-lower {
   display: none;
 }
 
+.now__playing__ctas + .styled-slider {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 99%;
+  right: 0;
+}
+
 @media(min-width: 580px) {
   body {
     display: none;

@@ -31,6 +31,7 @@
         <path fill="none" d="M0 0h48v48H0z"/></svg></g>
       </svg>
     </div>
+    <input class="styled-slider" v-model="numb" type="range" min="0" :max="progress" @input="skipValue" :style="{background: '-webkit-linear-gradient(top, #FFFFFF, #FFFFFF) 0% 0% / '+ numb*100/progress +'% 100% no-repeat'}">
   </div>
 </template>
 
@@ -43,6 +44,8 @@ export default {
     const store = useStore()
     const song = ref()
     const nowPlaying = ref(false)
+    const progress = ref(store.state.progress)
+    const numb = ref(store.state.numb)
 
     store.state.newSong = song.value
 
@@ -89,7 +92,9 @@ export default {
       playPause,
       openNP,
       nowPlaying,
-      timeUpdate
+      timeUpdate,
+      progress,
+      numb
     }
   }
 }
