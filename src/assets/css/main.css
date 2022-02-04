@@ -867,6 +867,10 @@ input[type=range].styled-slider.slider-progress::-ms-fill-lower {
   right: 0;
 }
 
+.now__playing__ctas + input[type=range]::-webkit-slider-thumb {
+  visibility: hidden;
+}
+
 @media(min-width: 580px) {
   body {
     display: none;
