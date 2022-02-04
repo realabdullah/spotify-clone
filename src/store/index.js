@@ -15,10 +15,13 @@ export default createStore({
     songDuration: '00:00',
     newDuration: '00:00',
     song: '',
-    songSrc: null,
     progress: '',
     playState: 'play',
     isPlaying: false,
+    songSrc: null,
+    songTitle: '',
+    songArtist: '',
+    songImg: '',
     musicArray: [
       {
         album_details: {
@@ -85,7 +88,7 @@ export default createStore({
       state.progress = payload
     },
     SET_SRC(state, payload) {
-      state.songSrc = payload
+      state.songWait = payload
     }
   },
   actions: {
@@ -166,7 +169,10 @@ export default createStore({
 
     //playing single
     playSolo({state}, song) {
-      state.songSrc = song
+      state.songSrc = song.song_url
+      state.songTitle = song.name
+      state.songArtist = song.artist
+      state.songImg = song.cover
       this.commit('SET_SRC', song)
       this.commit('IS_PLAYING', true)
       this.commit('PLAY_STATE', 'pause')

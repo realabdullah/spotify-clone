@@ -7,10 +7,10 @@
       <source :src="songSrc" type="audio/mpeg" />
     </audio>
     <div @click="openNP" v-on:click="$emit('view', {a: nowPlaying, b: song})" class="now__playing__song">
-      <img src="https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg" alt="lauv">
+      <img :src="songImg" alt="lauv">
       <div class="now__playing__details">
-        <p class="now__playing__title">La Vida</p>
-        <p class="now__playing__artiste">Pheelz</p>
+        <p class="now__playing__title">{{ songTitle }}</p>
+        <p class="now__playing__artiste">{{ songArtist }}</p>
       </div>
     </div>
     <div class="now__playing__ctas">
@@ -52,6 +52,18 @@ export default {
 
     const songSrc = computed(() => {
       return store.state.songSrc
+    })
+
+    const songTitle = computed(() => {
+      return store.state.songTitle
+    })
+
+    const songArtist = computed(() => {
+      return store.state.songArtist
+    })
+
+    const songImg = computed(() => {
+      return store.state.songImg
     })
 
     const openNP = () => {
@@ -104,6 +116,9 @@ export default {
 
     return {
       songSrc,
+      songTitle,
+      songArtist,
+      songImg,
       skipValue,
       musicReady,
       playMusic,
