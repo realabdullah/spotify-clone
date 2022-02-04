@@ -17,7 +17,7 @@
     </div>
     <div class="playing__details">
       <div class="track__cover">
-        <img src="https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg" @load="getPalette" ref="image" alt="lauv">
+        <img src="https://tooxclusive.com/wp-content/uploads/2021/02/Hear-Me-Out-artwork.jpeg" ref="image" alt="lauv">
       </div>
       <div class="track__details">
         <div class="track__author">
@@ -101,7 +101,6 @@
 </template>
 
 <script>
-import Vibrant from 'node-vibrant'
 import { ref, computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 
@@ -159,21 +158,8 @@ export default {
     const pauseMusic = () => {
       store.dispatch('pauseMusic')
     }
-    
-    //get color palette
-    const getPalette = () => {
-      const vibrant = new Vibrant(image.value)
-
-      vibrant.getPalette().then(
-        (palette) => console.log(`palette`, palette),
-        (reason) => {
-          console.error(reason)
-        }
-      )
-    }
 
     return {
-      getPalette,
       image,
       progress,
       numb,

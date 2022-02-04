@@ -44,6 +44,8 @@ export default {
     const song = ref()
     const nowPlaying = ref(false)
 
+    store.state.newSong = song.value
+
     const openNP = () => {
       nowPlaying.value = true
     }
@@ -75,9 +77,9 @@ export default {
       store.dispatch('pauseMusic')
     }
 
-    onMounted(() => {
-      store.state.newSong = song.value
-    })
+    // onMounted(() => {
+    //   store.state.newSong = song.value
+    // })
 
     return {
       musicReady,
