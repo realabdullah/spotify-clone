@@ -33,7 +33,7 @@
           </svg>
         </div>
         <div class="album__play">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" id="SvgjsSvg1001" width="60" height="60" version="1.1"><defs id="SvgjsDefs1002"/>
+          <svg @click="playMusic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" id="SvgjsSvg1001" width="60" height="60" version="1.1"><defs id="SvgjsDefs1002"/>
             <g id="SvgjsG1008" transform="matrix(1,0,0,1,0,0)">
               <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 48 48">
                 <path fill="none" d="M0 0h48v48H0z"/>
@@ -116,7 +116,11 @@ export default {
     const play = (song) => {
       store.dispatch('playSolo', song)
       console.log(songe.value)
+    }
+
+    const playMusic = () => {
       store.dispatch('playMusic')
+      console.log('playing!')
     }
 
     // onBeforeMount(() => {
@@ -124,6 +128,7 @@ export default {
     // })
 
     return {
+      playMusic,
       songe,
       play,
       album,
