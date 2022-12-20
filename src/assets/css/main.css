@@ -759,7 +759,7 @@ input[type=range].styled-slider {
   margin-top: 20px;
   margin-bottom: 5px;
   height: 3px;
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
 }
 
 /*progress support*/
@@ -871,8 +871,8 @@ input[type=range].styled-slider.slider-progress::-ms-fill-lower {
   visibility: hidden;
 }
 
-@media(min-width: 580px) {
+/* @media(min-width: 580px) {
   body {
     display: none;
   }
-}
+} */

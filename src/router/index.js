@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Search from '../views/Search.vue'
 import Library from '../views/Library.vue'
 import NowPlaying from '../components/NowPlaying.vue'
+import HandleCallback from '../views/HandleCallback.vue'
 // import Album from '../views/Album.vue'
 
 const routes = [
@@ -25,6 +26,11 @@ const routes = [
     path: '/playing',
     name: 'Playing',
     component: NowPlaying
+  },
+  {
+    path: '/callback',
+    name: 'Callback',
+    component: () => import('../views/HandleCallback.vue')
   },
   // {
   //   path: '/album',
