@@ -2,7 +2,7 @@
     <div>
         <svg height="12" width="12" aria-hidden="true" viewBox="0 0 16 16">
             <path
-                d="M15.724 4.22A4.313 4.313 0 0012.192.814a4.269 4.269 0 00-3.622 1.13.837.837 0 01-1.14 0 4.272 4.272 0 00-6.21 5.855l5.916 7.05a1.128 1.128 0 001.727 0l5.916-7.05a4.228 4.228 0 00.945-3.577z">
+                d="M15.724 4.22A4.313 4.313 0 0012.192.814a4.269 4.269 0 00-3.622 1.13.837.837 0 01-1.14 0 4.272 4.272 0 00-6.21 5.855l5.916 7.05a1.128 1.128 0 001.727 0l5.916-7.05a4.228 4.228 0 00.945-3.577z" fill="currentColor">
             </path>
         </svg>
     </div>
@@ -11,17 +11,11 @@
 <style lang="scss" scoped>
 div {
     background: linear-gradient(135deg,#450af5,#c4efd9);
-    border-radius: 2px;
-    width: 15px;
-    padding: 4px;
+    width: 24px;
+    height: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    svg {
-        path {
-            fill: #ffffff;
-        }
-    }
+    border-radius: 2px;
 }
 </style>
