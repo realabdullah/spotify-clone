@@ -2,19 +2,16 @@
 	import GoBackIcon from "./Icons/GoBackIcon.vue";
 	import GoForwardIcon from "./Icons/GoForwardIcon.vue";
 	import DropdownIcon from "./Icons/DropdownIcon.vue";
-	import { inject, onBeforeMount, ref } from "vue";
+	import { inject, onBeforeMount, ref, computed } from "vue";
     import { useRouter } from "vue-router";
+    import { useStore } from "vuex";
+
+    const store = useStore();
 
     const router = useRouter();
-	const userInfo = ref({});
-	const $axios = inject("useAxios");
-
-	const getUserInfo = async () => {
-		try {
-			const { data } = await $axios.get("/me");
-			userInfo.value = data;
-		} catch (error) {}
-	};
+	const userInfo = computed(() => {
+        return store.state.userInfo;
+    })
 
     const goBack = () => {
         router.go(-1);
@@ -23,10 +20,6 @@
     const goForward = () => {
         router.go(1);
     };
-
-	onBeforeMount( async () => {
-		await getUserInfo();
-	});
 </script>
 
 <template>

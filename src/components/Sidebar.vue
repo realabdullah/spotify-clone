@@ -18,7 +18,7 @@ const routeName = computed(() => route.name)
         <Logo />
         <ul class="sidebar__navs group_one">
             <li class="sidebar__navs-nav">
-                <router-link to="/home" :class="{ active: routeName === 'Home' }">
+                <router-link to="/" :class="{ active: routeName === 'Home' }">
                     <HomeIcon :active="routeName === 'Home'" />
                     <span>Home</span>
                 </router-link>
