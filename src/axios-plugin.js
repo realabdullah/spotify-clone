@@ -14,20 +14,25 @@ export default {
 			},
 		});
 
-		useAxios.interceptors.response.use(
-			(response) => {
-				return response;
-			}, 
-			async (error) => {
-				if (error.response.status === 401) {
-					await refreshToken();
-					const config = error.config;
-					config.headers["Authorization"] = `Bearer ${localStorage.getItem("rscAccessToken")}`;
-					return useAxios(config);
+		const accessToken = localStorage.getItem("rscAccessToken");
+		if (accessToken !== null && accessToken !== undefined) {
+			useAxios.interceptors.response.use(
+				(response) => {
+					return response;
+				}, 
+				async (error) => {
+					if (error.response.status === 401) {
+						
+						
+						await refreshToken();
+						const config = error.config;
+						config.headers["Authorization"] = `Bearer ${accessToken}`;
+						return useAxios(config);
+					}
+					return Promise.reject(error);
 				}
-				return Promise.reject(error);
-			}
-		);
+			);
+		}
 
 		app.provide("useAxios", useAxios);
 	},
