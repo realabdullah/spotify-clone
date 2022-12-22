@@ -98,6 +98,7 @@
 	}
 
 	.sidebar {
+		position: fixed;
 		width: 20%;
 		height: 100vh;
 		background: #000000;

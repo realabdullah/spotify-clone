@@ -17,6 +17,8 @@ onBeforeMount(async () => {
     <div>
         <SideBar />
         <Header />
-        <router-view></router-view>
+        <div class="view">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
