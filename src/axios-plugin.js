@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useRequestToken } from "./composables/requestToken.js";
 
-const { requestToken } = useRequestToken();
+const { refreshToken } = useRequestToken();
 
 export default {
 	install(app) {
@@ -20,7 +20,7 @@ export default {
 			}, 
 			async (error) => {
 				if (error.response.status === 401) {
-					await requestToken();
+					await refreshToken();
 					const config = error.config;
 					config.headers["Authorization"] = `Bearer ${localStorage.getItem("rscAccessToken")}`;
 					return useAxios(config);
