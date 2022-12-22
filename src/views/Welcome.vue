@@ -5,8 +5,8 @@ import { useLogin } from '../composables/login';
 const router = useRouter();
 const { login } = useLogin();
 
-if (localStorage.getItem('authorization_code')) {
-    router.push('/home');
+if (localStorage.getItem('rscAccessToken')) {
+    router.push('/');
 }
 </script>
 
