@@ -90,11 +90,11 @@
 		</div>
 
 		<div v-show="showDropdown" class="user__dropdown">
-			<a href="/" class="user__dropdown-item">
+			<a :href="userInfo.external_urls.spotify" target="_blank" class="user__dropdown-item">
 				Account
 				<AccountNavIcon />
 			</a>
-			<a href="/"> Profile </a>
+			<a :href="userInfo.external_urls.spotify" target="_blank"> Profile </a>
 			<a href="/"> Settings </a>
 			<a href="/"> Logout </a>
 		</div>
