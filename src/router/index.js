@@ -6,7 +6,7 @@ const checkAccess = (to, from, next) => {
 	} else {
 		next("/welcome");
 	}
-}
+};
 
 const routes = [
 	{
@@ -33,6 +33,26 @@ const routes = [
 				path: "/playing",
 				name: "Playing",
 				component: () => import("../components/NowPlaying.vue"),
+			},
+			{
+				path: "/library/albums",
+				name: "LibraryAlbums",
+				component: () => import("../components/Album.vue"),
+			},
+			{
+				path: "/library/playlists",
+				name: "LibraryPlaylists",
+				component: () => import("../components/Album.vue"),
+			},
+			{
+				path: "/library/podcasts",
+				name: "LibraryPodcasts",
+				component: () => import("../components/Album.vue"),
+			},
+			{
+				path: "/library/artists",
+				name: "LibraryArtists",
+				component: () => import("../components/Album.vue"),
 			},
 		],
 	},
