@@ -6,7 +6,7 @@ export function useLogin() {
 		const authorizeUrl = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${encodeURIComponent(
 			REDIRECT_URI
 		)}&scope=${encodeURIComponent(scopes.join(" "))}`;
-		window.open(authorizeUrl);
+		window.location.replace(authorizeUrl);
 	};
 
 	return {
