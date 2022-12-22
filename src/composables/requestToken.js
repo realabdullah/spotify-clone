@@ -9,7 +9,7 @@ export function useRequestToken() {
 
     const requestToken = async () => {
         const authorizationCode = router.currentRoute.value.query.code;
-
+        if (!authorizationCode) return;
         const data = {
             grant_type: "authorization_code",
             code: authorizationCode,
