@@ -3,7 +3,9 @@
 	import GoForwardIcon from "./Icons/GoForwardIcon.vue";
 	import DropdownIcon from "./Icons/DropdownIcon.vue";
 	import { inject, onBeforeMount, ref } from "vue";
+    import { useRouter } from "vue-router";
 
+    const router = useRouter();
 	const userInfo = ref({});
 	const $axios = inject("useAxios");
 
@@ -14,18 +16,26 @@
 		} catch (error) {}
 	};
 
-	onBeforeMount(() => {
-		getUserInfo();
+    const goBack = () => {
+        router.go(-1);
+    };
+
+    const goForward = () => {
+        router.go(1);
+    };
+
+	onBeforeMount( async () => {
+		await getUserInfo();
 	});
 </script>
 
 <template>
 	<div class="header">
 		<div class="header__history">
-			<button class="header__history-nav">
+			<button class="header__history-nav" @click="goBack">
 				<GoBackIcon />
 			</button>
-			<button class="header__history-nav">
+			<button class="header__history-nav" @click="goForward">
 				<GoForwardIcon />
 			</button>
 		</div>
