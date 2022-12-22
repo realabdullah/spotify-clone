@@ -13,7 +13,6 @@ const { getImageColor } = useGetImageColor();
 
 const handleMouseEnter = async (id, url) => {
     currentBackground.value = await getImageColor(url);
-    console.log("background => ", currentBackground.value);
     currentHoveredAlbum.value = id;
     showPlayBtn.value = true;
 };
