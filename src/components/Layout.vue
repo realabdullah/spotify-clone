@@ -1,24 +1,21 @@
 <script setup>
-import { defineAsyncComponent, onBeforeMount } from "vue";
-import { useStore } from "vuex";
-
-const store = useStore();
+import { defineAsyncComponent } from "vue";
 
 const SideBar = defineAsyncComponent(() => import("./Sidebar.vue"));
 
 const Header = defineAsyncComponent(() => import("./Header.vue"));
-
-onBeforeMount(async () => {
-    await store.dispatch("getUserInfo");
-});
 </script>
 
 <template>
     <div>
         <SideBar />
-        <Header />
+        <Suspense>
+            <template #default>
+                <Header />
+            </template>
+        </Suspense>
         <div class="view">
-            <router-view></router-view>
+            <router-view />
         </div>
     </div>
 </template>
