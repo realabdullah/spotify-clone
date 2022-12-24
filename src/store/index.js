@@ -1,23 +1,10 @@
-import { createStore, Store } from "vuex";
-import { ref, inject } from "vue";
+import { createStore } from "vuex";
 
 export default createStore({
-  state: {
-    userInfo: ref({}),
-  },
+    state: {},
 
-  mutations: {
-    SET_USER(state, payload) {
-      state.userInfo = payload;
-    },
-  },
+    mutations: {},
 
-  actions: {
-    async getUserInfo({ commit }) {
-      const $axios = inject("useAxios");
-      const { data } = await $axios.get("/me");
-      commit("SET_USER", data);
-    },
-  },
-  modules: {},
+    actions: {},
+    modules: {},
 });
