@@ -23,6 +23,10 @@ const getTime = () => {
     }
 };
 
+const changeBackground = (background) => {
+    currentBackground.value = background;
+};
+
 onBeforeMount(async () => {
     getTime();
     topAlbums.value = await getTopAlbums();
@@ -33,7 +37,7 @@ onBeforeMount(async () => {
     <div class="home" :style="{ background: currentBackground }">
         <h2>{{ greeting }}</h2>
 
-        <RecentlyPlayed :recently-played="topAlbums" />
+        <RecentlyPlayed :recently-played="topAlbums" @getBackground="changeBackground" />
     </div>
 </template>
 
