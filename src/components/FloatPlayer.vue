@@ -33,6 +33,10 @@ const getProgress = computed(() => {
     }
 });
 
+const albumArt = computed(() => {
+    return currentPlaying.value.album_art;
+})
+
 setInterval(async () => {
     currentPlaying.value = await getCurrentPlaying();
 }, 1000);
@@ -48,7 +52,7 @@ onBeforeMount(async () => {
             <div class="float__player">
                 <div class="float__player-track">
                     <div class="float__player-track-art">
-                        <img :src="currentPlaying.album_art" alt="album cover">
+                        <img :src="albumArt" alt="album cover">
                     </div>
                     <div class="float__player-track-info">
                         <a :href="currentPlaying.track_url"
@@ -67,7 +71,7 @@ onBeforeMount(async () => {
                 </div>
                 <div class="float__player-deck">
                     <div class="float__player-deck-controls">
-                        <button>
+                        <button :class="{ active: currentPlaying.shuffle }">
                             <ShuffleIcon />
                         </button>
                         <button>
@@ -80,7 +84,7 @@ onBeforeMount(async () => {
                         <button>
                             <NextIcon />
                         </button>
-                        <button>
+                        <button :class="{ active: currentPlaying.repeat === 'context' }">
                             <RepeatIcon />
                         </button>
                     </div>
@@ -364,4 +368,8 @@ button {
     font-size: 1.2rem;
     margin-right: 1rem;
 }
+
+.active {
+        color: #1db954;
+    }
 </style>
