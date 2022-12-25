@@ -9,6 +9,9 @@ export function useLogin() {
 			"user-read-recently-played",
 			"user-library-read",
 			"playlist-read-private",
+			"user-read-currently-playing",
+			"user-read-playback-position",
+			"user-read-playback-state",
 		];
 		const authorizeUrl = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${encodeURIComponent(
 			REDIRECT_URI
