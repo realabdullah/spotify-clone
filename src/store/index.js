@@ -1,9 +1,15 @@
 import { createStore } from "vuex";
 
 export default createStore({
-    state: {},
+    state: {
+        currentBackgroundColor: "#0000001f",
+    },
 
-    mutations: {},
+    mutations: {
+        setCurrentBackgroundColor(state, color) {
+            state.currentBackgroundColor = color;
+        }
+    },
 
     actions: {},
     modules: {},

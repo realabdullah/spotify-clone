@@ -4,20 +4,37 @@ import GoForwardIcon from "./Icons/GoForwardIcon.vue";
 import DropdownIcon from "./Icons/DropdownIcon.vue";
 import AccountNavIcon from "./Icons/AccountNavIcon.vue";
 import SearchInputIcon from "./Icons/SearchInputIcon.vue";
-import { computed, ref } from "vue";
+import { computed, ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { useStore } from "vuex";
 import { useGetUserInfo } from "../composables/getUserInfo";
 
 const { getUserInfo } = useGetUserInfo();
 const route = useRoute();
 const router = useRouter();
+const store = useStore();
 
 const user = ref({});
 const showDropdown = ref(false);
+const scrollStatus = ref(false);
 
 user.value = await getUserInfo();
 
 const routeName = computed(() => route.name);
+const background = computed(() => store.state.currentBackgroundColor);
+const backgroundStyle = reactive({
+	background,
+});
+
+const handleScroll = () => {
+	if (window.scrollY > 100) {
+		scrollStatus.value = true;
+	} else {
+		scrollStatus.value = false;
+	}
+};
+
+window.addEventListener("scroll", handleScroll);
 
 const toggleDropdown = () => {
 	showDropdown.value = !showDropdown.value;
@@ -33,7 +50,7 @@ const goForward = () => {
 </script>
 
 <template>
-	<div class="header">
+	<div class="header" :style="scrollStatus ? backgroundStyle : ''">
 		<div class="left__nav">
 			<div class="header__history">
 				<button class="header__history-nav" @click="goBack">
@@ -47,7 +64,7 @@ const goForward = () => {
 			<div v-if="routeName === 'Search'" class="header__search">
 				<label for="search">
 					<SearchInputIcon />
-					<input id="search" type="text" placeholder="What do you want to listen to?">
+					<input id="search" type="text" placeholder="What do you want to listen to?" />
 				</label>
 			</div>
 
@@ -69,7 +86,7 @@ const goForward = () => {
 
 		<div class="header__user" @click="toggleDropdown">
 			<button>
-				<img :src="user.images[0].url" :alt="user.display_name">
+				<img :src="user.images[0].url" :alt="user.display_name" />
 				<span>{{ user.display_name }}</span>
 				<DropdownIcon :show-dropdown="showDropdown" />
 			</button>
@@ -93,7 +110,7 @@ const goForward = () => {
 	top: 0;
 	left: 20%;
 	right: 0;
-	background: #0000001f;
+	background: transparent;
 	padding: 1rem 2rem;
 	display: flex;
 	align-items: center;
