@@ -11,6 +11,10 @@ const RecentlyPlayed = defineAsyncComponent(() =>
     import("../components/RecentlyPlayed.vue")
 );
 
+const SuggestedPlaylists = defineAsyncComponent(() =>
+    import("../components/SuggestedPlaylists.vue")
+);
+
 const getTime = () => {
     const today = new Date();
     const time = today.getHours();
@@ -38,6 +42,11 @@ onBeforeMount(async () => {
         <h2>{{ greeting }}</h2>
 
         <RecentlyPlayed :recently-played="topAlbums" @getBackground="changeBackground" />
+        <Suspense>
+            <template #default>
+                <SuggestedPlaylists />
+            </template>
+        </Suspense>
     </div>
 </template>
 
@@ -46,7 +55,7 @@ onBeforeMount(async () => {
     padding-top: 100px;
     padding-left: 22%;
     padding-right: 2rem;
-    height: 100vh;
+    min-height: 100vh;
 
     h2 {
         color: #ffffff;
