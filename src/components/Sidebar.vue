@@ -79,9 +79,6 @@ li {
 .sidebar {
 	position: fixed;
 	width: 20%;
-	// top: 0;
-	// left: 0;
-	// bottom: 0;
 	background: #000000;
 	padding: 1.5rem;
 	display: flex;

@@ -1,59 +1,78 @@
 <script setup>
-import MiniLikeIcon from './Icons/MiniLikeIcon.vue';
-import PipIcon from './Icons/PipIcon.vue';
-import ShuffleIcon from './Icons/ShuffleIcon.vue';
-import PreviousIcon from './Icons/PreviousIcon.vue';
-import PlayIcon from './Icons/PlayIcon.vue';
-import PauseIcon from './Icons/PauseIcon.vue';
-import NextIcon from './Icons/NextIcon.vue';
-import RepeatIcon from './Icons/RepeatIcon.vue';
-import LyricIcon from './Icons/LyricIcon.vue';
-import QueueIcon from './Icons/QueueIcon.vue';
-import DeviceIcon from './Icons/DeviceIcon.vue';
-import MuteIcon from './Icons/MuteIcon.vue';
-import FullScreenIcon from './Icons/FullScreenIcon.vue';
-import ListeningIcon from './Icons/ListeningIcon.vue';
-import { onBeforeMount, ref, computed } from 'vue';
-import { useGetCurrentPlaying } from '../composables/getCurrentPlaying';
+import ExpandArtIcon from "./Icons/ExpandArtIcon.vue";
+import MiniLikeIcon from "./Icons/MiniLikeIcon.vue";
+import PipIcon from "./Icons/PipIcon.vue";
+import ShuffleIcon from "./Icons/ShuffleIcon.vue";
+import PreviousIcon from "./Icons/PreviousIcon.vue";
+import PlayIcon from "./Icons/PlayIcon.vue";
+import PauseIcon from "./Icons/PauseIcon.vue";
+import NextIcon from "./Icons/NextIcon.vue";
+import RepeatIcon from "./Icons/RepeatIcon.vue";
+import LyricIcon from "./Icons/LyricIcon.vue";
+import QueueIcon from "./Icons/QueueIcon.vue";
+import DeviceIcon from "./Icons/DeviceIcon.vue";
+import MuteIcon from "./Icons/MuteIcon.vue";
+import FullScreenIcon from "./Icons/FullScreenIcon.vue";
+import ListeningIcon from "./Icons/ListeningIcon.vue";
+import { ref, computed } from "vue";
 
-const currentPlaying = ref(null);
-const { getCurrentPlaying } = useGetCurrentPlaying();
+const props = defineProps({
+    currentData: {
+        type: Object,
+        default: () => { },
+    },
+});
+
+const artExpanded = ref(false);
+
+const currentPlaying = computed(() => {
+    return props.currentData;
+});
 
 const formatDuration = computed(() => {
     return (progress) => {
         const minutes = Math.floor(progress / 60000);
         const seconds = ((progress % 60000) / 1000).toFixed(0);
-        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-    }
+        return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+    };
 });
 
 const getProgress = computed(() => {
     return (progress, duration) => {
         return (progress / duration) * 100;
-    }
+    };
 });
+
+const expandedArt = computed(() => {
+    return currentPlaying.value.expanded_art;
+})
 
 const albumArt = computed(() => {
     return currentPlaying.value.album_art;
-})
-
-setInterval(async () => {
-    currentPlaying.value = await getCurrentPlaying();
-}, 1000);
-
-onBeforeMount(async () => {
-    currentPlaying.value = await getCurrentPlaying();
 });
+
+const toggleArt = (value) => {
+    artExpanded.value = value;
+}
 </script>
 
 <template>
     <div v-if="currentPlaying" class="bottom__items">
+        <transition name="expanded">
+            <div v-show="artExpanded" class="expanded__art">
+                <img :src="expandedArt" alt="album cover" />
+                <ExpandArtIcon :expanded="artExpanded" @click="toggleArt(false)" />
+            </div>
+        </transition>
         <div class="float">
             <div class="float__player">
                 <div class="float__player-track">
-                    <div class="float__player-track-art">
-                        <img :src="albumArt" alt="album cover">
-                    </div>
+                    <transition name="close">
+                        <div v-show="!artExpanded" class="float__player-track-art">
+                            <img :src="albumArt" alt="album cover" />
+                            <ExpandArtIcon :expanded="artExpanded" @click="toggleArt(true)" />
+                        </div>
+                    </transition>
                     <div class="float__player-track-info">
                         <a :href="currentPlaying.track_url"
                             class="float__player-track-info-title">{{ currentPlaying.name }}</a>
@@ -84,16 +103,26 @@ onBeforeMount(async () => {
                         <button>
                             <NextIcon />
                         </button>
-                        <button :class="{ active: currentPlaying.repeat === 'context' }">
+                        <button :class="{
+    active: currentPlaying.repeat === 'context',
+}">
                             <RepeatIcon />
                         </button>
                     </div>
                     <div class="float__player-deck-progress">
-                        <span>{{ formatDuration(currentPlaying.progress) }}</span>
-                        <div class="progress"
-                            :style="{ width: getProgress(currentPlaying.progress, currentPlaying.duration) + '%' }">
-                        </div>
-                        <span>{{ formatDuration(currentPlaying.duration) }}</span>
+                        <span>{{
+        formatDuration(currentPlaying.progress)
+}}</span>
+                        <div class="progress" :style="{
+    width:
+        getProgress(
+            currentPlaying.progress,
+            currentPlaying.duration
+        ) + '%',
+}"></div>
+                        <span>{{
+        formatDuration(currentPlaying.duration)
+}}</span>
                     </div>
                 </div>
                 <div class="float__player-controls">
@@ -133,6 +162,46 @@ onBeforeMount(async () => {
     right: 0;
     z-index: 98;
 
+    .expanded__art {
+        width: 20%;
+        position: absolute;
+        bottom: 95px;
+        left: 0;
+        z-index: -1;
+
+        img {
+            width: 100%;
+            height: 330px;
+        }
+
+        svg {
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            background-color: #00000082;
+            color: #b3b3b3;
+            width: 30px;
+            height: 30px;
+            padding: 5px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: transform 0.3s;
+
+            &:hover {
+                transform: scale(1.2);
+                color: #ffffff;
+                cursor: pointer;
+            }
+        }
+
+        &:hover svg {
+            opacity: 1;
+        }
+    }
+
     .float {
         padding: 1rem 0;
         background: #181818;
@@ -153,11 +222,39 @@ onBeforeMount(async () => {
                     height: 50px;
                     overflow: hidden;
                     margin-right: 1rem;
+                    position: relative;
 
                     img {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
+                    }
+
+                    svg {
+                        position: absolute;
+                        top: 3px;
+                        right: 3px;
+                        background-color: #00000082;
+                        color: #b3b3b3;
+                        width: 20px;
+                        height: 20px;
+                        padding: 5px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        opacity: 0;
+                        transition: transform 0.3s;
+
+                        &:hover {
+                            transform: scale(1.2);
+                            color: #ffffff;
+                            cursor: pointer;
+                        }
+                    }
+
+                    &:hover svg {
+                        opacity: 1;
                     }
                 }
 
@@ -275,14 +372,13 @@ onBeforeMount(async () => {
                         border-radius: 5px;
 
                         &:hover {
-
                             &::after {
                                 opacity: 1;
                             }
                         }
 
                         &::after {
-                            content: '';
+                            content: "";
                             position: absolute;
                             top: 0;
                             left: 0;
@@ -319,14 +415,13 @@ onBeforeMount(async () => {
                         border-radius: 5px;
 
                         &:hover {
-
                             &::after {
                                 opacity: 1;
                             }
                         }
 
                         &::after {
-                            content: '';
+                            content: "";
                             position: absolute;
                             top: 0;
                             left: 0;
@@ -354,7 +449,6 @@ onBeforeMount(async () => {
         span {
             padding-left: 0.4rem;
             font-size: 0.8rem;
-
         }
     }
 }
@@ -370,6 +464,72 @@ button {
 }
 
 .active {
-        color: #1db954;
+    color: #1db954;
+}
+
+// keyframes generated by Animista
+
+.expanded-enter-active {
+    animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.expanded-leave-active {
+    animation: slide-out-bottom 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+.close-enter-active {
+    animation: slide-in-left 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.close-leave-active {
+    animation: slide-out-left 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@keyframes slide-out-left {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
     }
+
+    100% {
+        transform: translateX(-1000px);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-in-bottom {
+    0% {
+        transform: translateY(1000px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-out-bottom {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(1000px);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-in-left {
+    0% {
+        transform: translateX(-1000px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
 </style>
