@@ -33,7 +33,7 @@ const handleMouseLeave = () => {
 
 <template>
 	<div v-if="props.recentlyPlayed.length > 0" class="home__top-albums">
-		<div v-for="(album, index) in props.recentlyPlayed" :key="index" class="home__top-albums__album"
+		<router-link v-for="(album, index) in props.recentlyPlayed" :key="index" :to="`album/${album.id}`" class="home__top-albums__album"
 			@mouseenter="handleMouseEnter(index, album.image)" @mouseleave="handleMouseLeave">
 			<img :id="`image${index}`" :src="album.image" :alt="album.name" />
 			<div class="home__top-albums__album-card">
@@ -42,7 +42,7 @@ const handleMouseLeave = () => {
 					<PlayIcon />
 				</button>
 			</div>
-		</div>
+		</router-link>
 	</div>
 </template>
 
@@ -60,6 +60,7 @@ const handleMouseLeave = () => {
 		align-items: center;
 		gap: 1rem;
 		transition: 0.2s ease-in;
+		text-decoration: none;
 
 		&:hover {
 			cursor: pointer;

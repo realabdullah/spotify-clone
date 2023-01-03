@@ -30,29 +30,29 @@ const routes = [
 				component: () => import("../views/Library.vue"),
 			},
 			{
+				path: "/album/:id",
+				name: "Album",
+				component: () => import("../views/Album.vue"),
+			},
+			{
 				path: "/playing",
 				name: "Playing",
 				component: () => import("../components/NowPlaying.vue"),
 			},
 			{
-				path: "/library/albums",
-				name: "LibraryAlbums",
-				component: () => import("../components/Album.vue"),
-			},
-			{
 				path: "/library/playlists",
 				name: "LibraryPlaylists",
-				component: () => import("../components/Album.vue"),
+				component: () => import("../views/Album.vue"),
 			},
 			{
 				path: "/library/podcasts",
 				name: "LibraryPodcasts",
-				component: () => import("../components/Album.vue"),
+				component: () => import("../views/Album.vue"),
 			},
 			{
 				path: "/library/artists",
 				name: "LibraryArtists",
-				component: () => import("../components/Album.vue"),
+				component: () => import("../views/Album.vue"),
 			},
 		],
 	},
