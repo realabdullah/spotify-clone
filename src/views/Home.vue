@@ -15,6 +15,10 @@ const SuggestedPlaylists = defineAsyncComponent(() =>
     import("../components/SuggestedPlaylists.vue")
 );
 
+const UserPlaylists = defineAsyncComponent(() =>
+    import("../components/UserPlaylists.vue")
+);
+
 const getTime = () => {
     const today = new Date();
     const time = today.getHours();
@@ -45,6 +49,12 @@ onBeforeMount(async () => {
         <Suspense>
             <template #default>
                 <SuggestedPlaylists />
+            </template>
+        </Suspense>
+
+        <Suspense>
+            <template #default>
+                <UserPlaylists />
             </template>
         </Suspense>
     </div>
