@@ -51,20 +51,27 @@ const handleMouseLeave = () => {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 1rem;
-	// grid-template-rows: repeat(2, auto);
 
 	&__album {
 		height: 80px;
-		background: hsla(0, 0%, 100%, 0.1);
+		background: #ffffff1a;
 		border-radius: 5px;
 		display: flex;
 		align-items: center;
 		gap: 1rem;
+		transition: 0.2s ease-in;
+
+		&:hover {
+			cursor: pointer;
+			background: #ffffff3d;
+		}
 
 		img {
 			width: 80px;
 			height: 100%;
 			object-fit: cover;
+			border-top-left-radius: 5px;
+			border-bottom-left-radius: 5px;
 		}
 
 		&-card {

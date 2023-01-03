@@ -19,6 +19,10 @@ const UserPlaylists = defineAsyncComponent(() =>
     import("../components/UserPlaylists.vue")
 );
 
+const NewReleases = defineAsyncComponent(() => 
+    import("../components/NewReleases.vue")
+);
+
 const getTime = () => {
     const today = new Date();
     const time = today.getHours();
@@ -57,6 +61,12 @@ onBeforeMount(async () => {
                 <UserPlaylists />
             </template>
         </Suspense>
+
+        <Suspense>
+            <template #default>
+                <NewReleases />
+            </template>
+        </Suspense>
     </div>
 </template>
 
@@ -65,7 +75,7 @@ onBeforeMount(async () => {
     padding-top: 100px;
     padding-left: 22%;
     padding-right: 2rem;
-    padding-bottom: 2rem;
+    padding-bottom: 10rem;
     min-height: 100vh;
 
     h2 {

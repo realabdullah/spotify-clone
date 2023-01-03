@@ -14,7 +14,22 @@ export function useGetTopAlbums() {
         });
     };
 
+    const getNewReleases = () => {
+        return $axios.get("browse/new-releases?limit=6").then(({ data }) => {
+            return data.albums.items.map((item) => {
+                return {
+                    id: item.id,
+                    name: item.name,
+                    art: item.images[1].url,
+                    owner: item.artists[0].name,
+                    ownerLink: item.artists[0].external_urls.spotify,
+                };
+            });
+        });
+    }
+
     return {
         getTopAlbums,
+        getNewReleases,
     };
 }
