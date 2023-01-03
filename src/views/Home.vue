@@ -55,6 +55,7 @@ onBeforeMount(async () => {
     padding-top: 100px;
     padding-left: 22%;
     padding-right: 2rem;
+    padding-bottom: 2rem;
     min-height: 100vh;
 
     h2 {
