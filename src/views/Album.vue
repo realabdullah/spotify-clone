@@ -38,12 +38,12 @@ onBeforeMount(async () => {
     try {
         const { data } = await fetchAlbumDetail(albumId.value);
         album.value = data;
+        background.value = await getImageColor(album.value.images[2].url);
         const tracks = album.value.tracks.items;
         let i;
         for (i = 0; i <= tracks.length; i++) {
             duration.value += tracks[i].duration_ms;
         }
-        background.value = await getImageColor(album.value.images[2].url);
     } catch { }
 });
 </script>

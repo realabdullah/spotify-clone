@@ -15,22 +15,16 @@ export default {
 		});
 
 		const accessToken = localStorage.getItem("rscAccessToken");
+		const tokenExpiry = localStorage.getItem("rscTokenExpiry");
 		if (accessToken !== null && accessToken !== undefined) {
-			useAxios.interceptors.response.use(
-				(response) => {
-					return response;
-				}, 
-				async (error) => {
-					if (error.response.status === 401) {
-						
-						
+			useAxios.interceptors.response.use(async config => {
+					if (Date.now() > tokenExpiry) {
 						await refreshToken();
-						const config = error.config;
-						config.headers["Authorization"] = `Bearer ${accessToken}`;
-						return useAxios(config);
+						const token = localStorage.getItem("rscAccessToken");
+						config.headers["Authorization"] = `Bearer ${token}`;
 					}
-					return Promise.reject(error);
-				}
+					return config;
+				},
 			);
 		}
 

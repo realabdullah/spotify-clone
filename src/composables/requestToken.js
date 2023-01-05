@@ -31,8 +31,10 @@ export function useRequestToken() {
             "https://accounts.spotify.com/api/token",
             options
         );
-        const { access_token, refresh_token } = await response.json();
+        const { access_token, expires_in, refresh_token } = await response.json();
 
+        const rscTokenExpiry = Date.now() + (expires_in - 400) * 3600;
+        localStorage.setItem("rscTokenExpiry", rscTokenExpiry);
         localStorage.setItem("rscAccessToken", access_token);
         localStorage.setItem("rscRefreshToken", refresh_token);
     };
@@ -59,8 +61,9 @@ export function useRequestToken() {
             "https://accounts.spotify.com/api/token",
             options
         );
-        const { access_token } = await response.json();
-
+        const { access_token, expires_in } = await response.json();
+        const rscTokenExpiry = Date.now() + (expires_in - 400) * 3600;
+        localStorage.setItem("rscTokenExpiry", rscTokenExpiry);
         localStorage.setItem("rscAccessToken", access_token);
     };
 
