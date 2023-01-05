@@ -25,6 +25,15 @@ export default {
 					}
 					return config;
 				},
+				async (error) => {
+					if (error.response.status === 401) {
+						await refreshToken();
+						const config = error.config;
+						config.headers["Authorization"] = `Bearer ${accessToken}`;
+						return useAxios(config);
+					}
+					return Promise.reject(error);
+				}
 			);
 		}
 
