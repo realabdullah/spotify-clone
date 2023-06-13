@@ -15,7 +15,7 @@
 .view {
     display: none;
 
-    @media (min-width: 1800px) {
+    @media (min-width: 1100px) {
         display: block;
     }
 }
@@ -30,7 +30,7 @@
     text-align: center;
     padding: 1rem;
 
-    @media (min-width: 1800px) {
+    @media (min-width: 1100px) {
         display: none;
     }
 }
