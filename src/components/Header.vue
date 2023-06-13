@@ -47,6 +47,13 @@ const goBack = () => {
 const goForward = () => {
 	router.go(1);
 };
+
+const logOut = () => {
+	localStorage.removeItem("rscAccessToken");
+	localStorage.removeItem("rscRefreshToken");
+	localStorage.removeItem("rscTokenExpiry");
+	router.push('/');
+}
 </script>
 
 <template>
@@ -86,7 +93,7 @@ const goForward = () => {
 
 		<div class="header__user" @click="toggleDropdown">
 			<button>
-				<img :src="user.images[0].url" :alt="user.display_name" />
+				<img :src="user.images[0]?.url" :alt="user.display_name" />
 				<span>{{ user.display_name }}</span>
 				<DropdownIcon :show-dropdown="showDropdown" />
 			</button>
@@ -99,7 +106,7 @@ const goForward = () => {
 			</a>
 			<a :href="user.external_urls.spotify" target="_blank"> Profile </a>
 			<a href="/"> Settings </a>
-			<a href="/"> Logout </a>
+			<span @click="logOut">Logout </span>
 		</div>
 	</div>
 </template>
@@ -252,7 +259,7 @@ const goForward = () => {
 		box-shadow: 0 16px 24px #0000004d, 0 6px 8px #00000033;
 		z-index: 2;
 
-		a {
+		a, span {
 			text-decoration: none;
 			color: #b3b3b3;
 			font-size: 1rem;
