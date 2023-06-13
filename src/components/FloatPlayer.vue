@@ -156,11 +156,8 @@ const toggleArt = (value) => {
 
 <style lang="scss" scoped>
 .bottom__items {
-    position: fixed;
+    position: sticky;
     bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 98;
 
     .expanded__art {
         width: 20%;

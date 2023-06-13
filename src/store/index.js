@@ -1,16 +1,12 @@
-import { createStore } from "vuex";
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
-export default createStore({
-    state: {
-        currentBackgroundColor: "#0000001f",
-    },
+export const useABDStore = defineStore('main', () => {
+    const currentBackgroundColor = ref("#0000001f");
+    const gradientBackgroundColor = ref("linear-gradient(#f9f9f9 -40%, #000000 60%)");
 
-    mutations: {
-        setCurrentBackgroundColor(state, color) {
-            state.currentBackgroundColor = color;
-        }
-    },
-
-    actions: {},
-    modules: {},
+    return {
+        currentBackgroundColor,
+        gradientBackgroundColor,
+    };
 });

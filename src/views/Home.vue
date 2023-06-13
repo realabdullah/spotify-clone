@@ -1,10 +1,11 @@
 <script setup>
 import { defineAsyncComponent, onBeforeMount, ref } from "vue";
+import { useABDStore } from "../store";
 import { useGetTopAlbums } from "../composables/topAlbums";
 
+const store = useABDStore();
 const greeting = ref("");
 const topAlbums = ref([]);
-const currentBackground = ref("linear-gradient(#f9f9f9 -40%, #000000 60%)");
 const { getTopAlbums } = useGetTopAlbums();
 
 const RecentlyPlayed = defineAsyncComponent(() =>
@@ -28,15 +29,11 @@ const getTime = () => {
     const time = today.getHours();
     if (time < 12) {
         greeting.value = "Good morning";
-    } else if (time > 12 && time < 16) {
+    } else if (time >= 12 && time < 16) {
         greeting.value = "Good afternoon";
     } else if (time > 16) {
         greeting.value = "Good evening";
     }
-};
-
-const changeBackground = (background) => {
-    currentBackground.value = background;
 };
 
 onBeforeMount(async () => {
@@ -46,10 +43,10 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-    <div class="home" :style="{ background: currentBackground }">
+    <div class="home">
         <h2>{{ greeting }}</h2>
 
-        <RecentlyPlayed :recently-played="topAlbums" @getBackground="changeBackground" />
+        <RecentlyPlayed :recently-played="topAlbums" />
         <Suspense>
             <template #default>
                 <SuggestedPlaylists />
@@ -72,11 +69,6 @@ onBeforeMount(async () => {
 
 <style lang="scss" scoped>
 .home {
-    padding-top: 100px;
-    padding-left: 22%;
-    padding-right: 2rem;
-    padding-bottom: 10rem;
-    min-height: 100vh;
 
     h2 {
         color: #ffffff;

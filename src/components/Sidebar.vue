@@ -5,7 +5,6 @@ import { useGetPlaylists } from "../composables/getPlaylists";
 import HomeIcon from "./Icons/HomeIcon.vue";
 import SearchIcon from "./Icons/SearchIcon.vue";
 import LibraryIcon from "./Icons/LibraryIcon.vue";
-import Logo from "./Icons/Logo.vue";
 import CreatePlaylistIcon from "./Icons/CreatePlaylistIcon.vue";
 import LikedSongsIcon from "./Icons/LikedSongsIcon.vue";
 import YourEpisodesIcon from "./Icons/YourEpisodesIcon.vue";
@@ -15,140 +14,200 @@ const { getPlaylists } = useGetPlaylists();
 const routeName = computed(() => route.name);
 
 const playlists = await getPlaylists();
+console.log(playlists)
 </script>
 
 <template>
-	<div class="sidebar">
-		<div class="fixed-section">
-			<Logo />
-			<ul class="sidebar__navs group_one">
-				<li class="sidebar__navs-nav">
-					<router-link to="/" :class="{ active: routeName === 'Home' }">
-						<HomeIcon :active="routeName === 'Home'" />
-						<span>Home</span>
-					</router-link>
-				</li>
-				<li class="sidebar__navs-nav">
-					<router-link to="/search" :class="{ active: routeName === 'Search' }">
-						<SearchIcon :active="routeName === 'Search'" />
-						<span>Search</span>
-					</router-link>
-				</li>
-				<li class="sidebar__navs-nav">
-					<router-link to="/library/playlists" :class="{ active: routeName.includes('Library') }">
-						<LibraryIcon :active="routeName === 'Library'" />
-						<span>Your Library</span>
-					</router-link>
-				</li>
-			</ul>
-			<ul class="sidebar__navs group_two">
-				<li class="sidebar__navs-nav">
-					<router-link to="">
-						<CreatePlaylistIcon />
-						<span>Create Playlist</span>
-					</router-link>
-				</li>
-				<li class="sidebar__navs-nav">
-					<router-link to="">
-						<LikedSongsIcon />
-						<span>Liked Songs</span>
-					</router-link>
-				</li>
-				<li class="sidebar__navs-nav">
-					<router-link to="">
-						<YourEpisodesIcon />
-						<span>Your Episodes</span>
-					</router-link>
-				</li>
-			</ul>
-		</div>
-		<ul class="sidebar__navs playlists">
-			<li v-for="playlist in playlists" :key="playlist.id" class="sidebar__navs-nav playlists-nav">
-				<a :href="playlist.link">{{ playlist.name }}</a>
-			</li>
-		</ul>
-	</div>
+    <div class="sidebar">
+        <div class="sidebar-routes">
+            <router-link to="/" :class="{ active: routeName === 'Home' }">
+                <HomeIcon :active="routeName === 'Home'" />
+                <span>Home</span>
+            </router-link>
+            <router-link to="/search" :class="{ active: routeName === 'Search' }">
+                <SearchIcon :active="routeName === 'Search'" />
+                <span>Search</span>
+            </router-link>
+        </div>
+
+        <div class="sidebar-library">
+            <div class="sidebar-library__head">
+                <button>
+                    <LibraryIcon :active="true" />
+                    <span>Your Library</span>
+                </button>
+            </div>
+
+            <div class="sidebar-library__body">
+                <router-link to="">
+                    <img src="https://misc.scdn.co/liked-songs/liked-songs-64.png" alt="liked" />
+                    <span>Liked Songs</span>
+                </router-link>
+                <router-link to="">
+                    <img src="https://misc.scdn.co/your-episodes/SE-64.png" alt="episodes">
+                    <span>Your Episodes</span>
+                </router-link>
+                <a v-for="playlist in playlists" :key="playlist.id" :href="playlist.ownerLink" class="playlist">
+                    <img :src="playlist.art" alt="art">
+                    <div class="details">
+                        <p>{{ playlist.name }}</p>
+                        <div class="details-more">
+                            <span>Playlist</span>
+                            <span>•</span>
+                            <span>{{ playlist.owner }}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style lang="scss" scoped>
 ul,
 li {
-	list-style: none;
+    list-style: none;
 }
 
 .sidebar {
-	position: fixed;
-	width: 20%;
-	background: #000000;
-	padding: 1.5rem;
-	display: flex;
-	flex-direction: column;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 100vh;
+    padding-bottom: 9rem;
 
-	.fixed-section {
+    &-routes {
+        background: #121212;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
 
-		.sidebar__navs {
-			&-nav {
-				margin-bottom: 15px;
+        a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #b3b3b3;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
 
-				a {
-					display: flex;
-					align-items: center;
-					text-decoration: none;
-					color: #b3b3b3;
-					font-size: 1rem;
-					font-weight: 600;
+            &:hover {
+                color: #fff;
+            }
 
-					&:hover {
-						color: #ffffff;
-					}
+            &.active {
+                color: #fff;
+            }
+        }
+    }
 
-					span {
-						padding-left: 15px;
-					}
-				}
+    &-library {
+        background: #121212;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        overflow: auto;
 
-				.active {
-					color: #ffffff;
-				}
-			}
-		}
-	}
+        &__head {
+            position: sticky;
+            top: -25px;
+            background: #121212;
+            padding: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            z-index: 1;
 
-	.playlists {
-		height: 100%;
-		padding-bottom: 50px;
-		overflow-y: scroll;
-		-ms-overflow-style: none;
-		scrollbar-width: none;
+            button {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                color: #b3b3b3;
+                font-size: 1rem;
+                font-weight: 500;
+                transition: all 0.2s ease-in-out;
+                background: transparent;
+                border: none;
+                cursor: pointer;
 
-		&::-webkit-scrollbar {
-			display: none;
-		}
+                &:hover {
+                    color: #fff;
+                }
+            }
+        }
 
-		&-nav {
-			margin-bottom: 15px;
+        &__body {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
 
-			a {
-				text-decoration: none;
-				color: #b3b3b3;
-				font-size: 1rem;
-				font-weight: 400;
+            a {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                color: #b3b3b3;
+                font-size: 1rem;
+                font-weight: 500;
+                transition: all 0.2s ease-in-out;
+                text-decoration: none;
 
-				&:hover {
-					color: #ffffff;
-				}
-			}
-		}
-	}
+                &:hover {
+                    color: #fff;
+                }
 
-	.group_one {
-		margin: 24px 0;
-	}
+                img {
+                    width: 3rem;
+                    height: 3rem;
+                    object-fit: contain;
+                    border-radius: 0.3rem;
+                }
+            }
 
-	.group_two {
-		margin-bottom: 18px;
-		border-bottom: 0.002rem solid #b3b3b3;
-	}
+            .playlist {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                &:hover {
+                    background: #282828;
+                    padding: 0.5rem;
+                    border-radius: 0.3rem;
+                }
+
+                img {
+                    width: 3.2rem;
+                    height: 3.2rem;
+                    object-fit: contain;
+                    border-radius: 0.3rem;
+                }
+
+                .details {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.2rem;
+
+                    p {
+                        font-size: 1rem;
+                        font-weight: 500;
+                        color: #fff;
+                    }
+
+                    .details-more {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.2rem;
+                        font-size: 0.8rem;
+                        color: #b3b3b3;
+                    }
+                }
+            }
+        }
+    }
 }
 </style>

@@ -14,15 +14,13 @@ const emit = defineEmits(['getBackground']);
 
 const showPlayBtn = ref(false);
 const currentHoveredAlbum = ref(null);
-const currentBackground = ref("");
 
 const { getImageColor } = useGetImageColor();
 
 const handleMouseEnter = async (id, url) => {
 	currentHoveredAlbum.value = id;
 	showPlayBtn.value = true;
-	currentBackground.value = await getImageColor(url);
-	emit("getBackground", currentBackground.value);
+	await getImageColor(url);
 };
 
 const handleMouseLeave = () => {

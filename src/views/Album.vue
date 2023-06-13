@@ -9,7 +9,6 @@ import MoreIcon from "../components/Icons/MoreIcon.vue";
 import DurationIcon from "../components/Icons/DurationIcon.vue";
 
 const album = ref(null);
-const background = ref("");
 const duration = ref(0);
 const route = useRoute();
 const { fetchAlbumDetail } = useGetAlbum();
@@ -42,7 +41,7 @@ onBeforeMount(async () => {
     try {
         const { data } = await fetchAlbumDetail(albumId.value);
         album.value = data;
-        background.value = await getImageColor(album.value.images[2].url, 'album');
+        await getImageColor(album.value.images[2].url, 'album');
         const tracks = album.value.tracks.items;
         let i;
         for (i = 0; i <= tracks.length; i++) {
@@ -53,7 +52,7 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-    <div v-if="album" class="album" :style="{ background: background }">
+    <div v-if="album" class="album">
         <div class="album__header">
             <img :src="album.images[0].url" :alt="album.name" />
             <div class="album__header-content">
