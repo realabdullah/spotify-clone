@@ -7,10 +7,20 @@ const store = useStore();
 const floatPlayerData = ref(null);
 const { getCurrentPlaying } = useGetCurrentPlaying();
 const background = ref("");
+const generalHeight = ref(store.generalHeight);
 
 watchEffect(() => {
     background.value = store.gradientBackgroundColor;
-})
+    
+    if (floatPlayerData.value) {
+        generalHeight.value = "84vh";
+        store.generalHeight = "84vh";
+    } else {
+        generalHeight.value = "95vh";
+        store.generalHeight = "95vh";
+    }
+});
+
 const currentData = computed(() => {
     return floatPlayerData.value;
 })
@@ -73,7 +83,7 @@ setInterval(async () => {
             background-color: #121212;
             border-radius: 1rem;
             height: 100%;
-            max-height: 84vh;
+            max-height: v-bind(generalHeight);
 
             &-view {
                 overflow-y: scroll;

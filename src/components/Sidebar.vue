@@ -1,16 +1,23 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed, ref, watchEffect } from "vue";
 import { useRoute } from "vue-router";
+import { useStore } from "../store";
 import { useGetPlaylists } from "../composables/getPlaylists";
 import HomeIcon from "./Icons/HomeIcon.vue";
 import SearchIcon from "./Icons/SearchIcon.vue";
 import LibraryIcon from "./Icons/LibraryIcon.vue";
 
+const store = useStore();
 const route = useRoute();
 const { getPlaylists } = useGetPlaylists();
 
 const hideText = ref(true);
+const generalHeight = ref("85vh");
 const routeName = computed(() => route.name);
+
+watchEffect(() => {
+    generalHeight.value = store.generalHeight;
+});
 
 const playlists = await getPlaylists();
 </script>
@@ -72,7 +79,7 @@ li {
     flex-direction: column;
     gap: 0.5rem;
     height: 100%;
-    max-height: 84vh;
+    max-height: v-bind(generalHeight);
 
     &-routes {
         background: #121212;
