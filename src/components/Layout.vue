@@ -59,7 +59,7 @@ setInterval(async () => {
 
     .view {
         display: grid;
-        grid-template-columns: 25% 74.5%;
+        grid-template-columns: auto minmax(0, 1fr);
         gap: 0.5rem;
         padding: 1rem;
         height: 100%;

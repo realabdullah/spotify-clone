@@ -1,20 +1,18 @@
 <script setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useGetPlaylists } from "../composables/getPlaylists";
 import HomeIcon from "./Icons/HomeIcon.vue";
 import SearchIcon from "./Icons/SearchIcon.vue";
 import LibraryIcon from "./Icons/LibraryIcon.vue";
-import CreatePlaylistIcon from "./Icons/CreatePlaylistIcon.vue";
-import LikedSongsIcon from "./Icons/LikedSongsIcon.vue";
-import YourEpisodesIcon from "./Icons/YourEpisodesIcon.vue";
 
 const route = useRoute();
 const { getPlaylists } = useGetPlaylists();
+
+const hideText = ref(true);
 const routeName = computed(() => route.name);
 
 const playlists = await getPlaylists();
-console.log(playlists)
 </script>
 
 <template>
@@ -22,34 +20,34 @@ console.log(playlists)
         <div class="sidebar-routes">
             <router-link to="/" :class="{ active: routeName === 'Home' }">
                 <HomeIcon :active="routeName === 'Home'" />
-                <span>Home</span>
+                <span v-show="hideText">Home</span>
             </router-link>
             <router-link to="/search" :class="{ active: routeName === 'Search' }">
                 <SearchIcon :active="routeName === 'Search'" />
-                <span>Search</span>
+                <span v-show="hideText">Search</span>
             </router-link>
         </div>
 
         <div class="sidebar-library">
             <div class="sidebar-library__head">
-                <button>
+                <button @click="hideText = !hideText">
                     <LibraryIcon :active="true" />
-                    <span>Your Library</span>
+                    <span v-show="hideText">Your Library</span>
                 </button>
             </div>
 
             <div class="sidebar-library__body">
                 <router-link to="">
                     <img src="https://misc.scdn.co/liked-songs/liked-songs-64.png" alt="liked" />
-                    <span>Liked Songs</span>
+                    <span v-show="hideText">Liked Songs</span>
                 </router-link>
                 <router-link to="">
                     <img src="https://misc.scdn.co/your-episodes/SE-64.png" alt="episodes">
-                    <span>Your Episodes</span>
+                    <span v-show="hideText">Your Episodes</span>
                 </router-link>
                 <a v-for="playlist in playlists" :key="playlist.id" :href="playlist.ownerLink" class="playlist">
                     <img :src="playlist.art" alt="art">
-                    <div class="details">
+                    <div v-show="hideText" class="details">
                         <p>{{ playlist.name }}</p>
                         <div class="details-more">
                             <span>Playlist</span>
