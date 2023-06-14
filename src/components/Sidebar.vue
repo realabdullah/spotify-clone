@@ -73,8 +73,8 @@ li {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    height: 100vh;
-    padding-bottom: 9rem;
+    height: 100%;
+    max-height: 84vh;
 
     &-routes {
         background: #121212;

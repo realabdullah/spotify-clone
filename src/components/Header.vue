@@ -6,13 +6,13 @@ import AccountNavIcon from "./Icons/AccountNavIcon.vue";
 import SearchInputIcon from "./Icons/SearchInputIcon.vue";
 import { computed, ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { useABDStore } from "../store";
+import { useStore } from "../store";
 import { useGetUserInfo } from "../composables/getUserInfo";
 
 const { getUserInfo } = useGetUserInfo();
 const route = useRoute();
 const router = useRouter();
-const store = useABDStore();
+const store = useStore();
 
 const user = ref({});
 const showDropdown = ref(false);

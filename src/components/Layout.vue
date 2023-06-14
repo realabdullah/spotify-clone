@@ -1,9 +1,9 @@
 <script setup>
 import { defineAsyncComponent, ref, computed, watchEffect } from "vue";
-import { useABDStore } from "../store";
+import { useStore } from "../store";
 import { useGetCurrentPlaying } from "../composables/getCurrentPlaying";
 
-const store = useABDStore();
+const store = useStore();
 const floatPlayerData = ref(null);
 const { getCurrentPlaying } = useGetCurrentPlaying();
 const background = ref("");
@@ -51,29 +51,33 @@ setInterval(async () => {
 
 <style lang="scss" scoped>
 .container {
+    height: 100%;
+    max-height: 100vh;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    height: 100vh;
-    background-color: #000000;
-    overflow: hidden;
 
     .view {
         display: grid;
-        grid-template-columns: 25% 1fr;
+        grid-template-columns: 25% 74.5%;
         gap: 0.5rem;
         padding: 1rem;
+        height: 100%;
+        max-height: 85vh;
 
         .main {
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            height: 100vh;
-            overflow-y: scroll;
             padding: 1rem;
-            padding-bottom: 15rem;
             background-color: #121212;
             border-radius: 1rem;
+            height: 100%;
+            max-height: 84vh;
+
+            &-view {
+                overflow-y: scroll;
+            }
         }
     }
 }

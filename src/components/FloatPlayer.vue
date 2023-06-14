@@ -158,6 +158,8 @@ const toggleArt = (value) => {
 .bottom__items {
     position: sticky;
     bottom: 0;
+    padding: 0 1rem;
+    border-radius: 1rem;
 
     .expanded__art {
         width: 20%;
@@ -202,6 +204,7 @@ const toggleArt = (value) => {
     .float {
         padding: 1rem 0;
         background: #181818;
+        border-radius: 1rem;
 
         &__player {
             display: flex;
@@ -442,6 +445,7 @@ const toggleArt = (value) => {
         align-items: center;
         background: #1ed760;
         justify-content: flex-end;
+        border-radius: 0.5rem;
 
         span {
             padding-left: 0.4rem;

@@ -1,9 +1,9 @@
 <script setup>
 import { defineAsyncComponent, onBeforeMount, ref } from "vue";
-import { useABDStore } from "../store";
+import { useStore } from "../store";
 import { useGetTopAlbums } from "../composables/topAlbums";
 
-const store = useABDStore();
+const store = useStore();
 const greeting = ref("");
 const topAlbums = ref([]);
 const { getTopAlbums } = useGetTopAlbums();
