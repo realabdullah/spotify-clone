@@ -114,12 +114,8 @@ onBeforeMount(async () => {
 
 <style lang="scss" scoped>
 .album {
-    background: linear-gradient(#39314a -40%, #000000 60%);
-    padding-top: 100px;
-    padding-left: 22%;
-    padding-right: 2rem;
-    padding-bottom: 10rem;
-    min-height: 100vh;
+    padding-top: 2rem;
+    padding-left: 1rem;
 
     &__header {
         display: flex;
