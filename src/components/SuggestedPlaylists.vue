@@ -1,13 +1,16 @@
 <script setup>
 import PlayIcon from "../components/Icons/PlayIcon.vue";
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
+import { useStore } from "../store";
 import { useGetPlaylists } from "../composables/getPlaylists";
 
+const store = useStore();
 const showPlayBtn = ref(false);
 const hoveredPlaylist = ref(null);
 
 const { suggestPlaylist } = useGetPlaylists();
 const { title, suggestedPlaylists } = await suggestPlaylist();
+const playlists = ref(suggestedPlaylists);
 
 const handleMouseEnter = async (id) => {
     hoveredPlaylist.value = id;
@@ -18,6 +21,11 @@ const handleMouseLeave = () => {
     hoveredPlaylist.value = null;
     showPlayBtn.value = false;
 };
+
+watchEffect(() => {
+    const playlistArray = suggestedPlaylists;
+    playlists.value = playlistArray.slice(0, store.cardQuantity);
+});
 </script>
 
 <template>
@@ -25,7 +33,7 @@ const handleMouseLeave = () => {
 
     <div class="playlists">
         <ul>
-            <li v-for="playlist in suggestedPlaylists" :key="playlist.id" @mouseenter="handleMouseEnter(playlist.id)"
+            <li v-for="playlist in playlists" :key="playlist.id" @mouseenter="handleMouseEnter(playlist.id)"
                 @mouseleave="handleMouseLeave">
                 <div class="playlist__art">
                     <img :src="playlist.art" :alt="playlist.title">

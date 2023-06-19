@@ -1,5 +1,5 @@
 <script setup>
-import { defineAsyncComponent, onBeforeMount, ref } from "vue";
+import { defineAsyncComponent, onBeforeMount, ref, onBeforeUnmount } from "vue";
 import { useStore } from "../store";
 import { useGetTopAlbums } from "../composables/topAlbums";
 
@@ -36,9 +36,37 @@ const getTime = () => {
     }
 };
 
+// trim playlists based on screen size
+const trimCardQuantities = () => {
+    if (window.innerWidth <= 1100) {
+       store.cardQuantity = 2;
+    } else if (window.innerWidth <= 1200) {
+       store.cardQuantity = 3;
+    } else if (window.innerWidth <= 1500) {
+       store.cardQuantity = 4;
+    } else if (window.innerWidth <= 1700) {
+         store.cardQuantity = 5;
+    } else {
+       store.cardQuantity = 6;
+    }
+};
+
 onBeforeMount(async () => {
     getTime();
     topAlbums.value = await getTopAlbums();
+    trimCardQuantities();
+
+    window.addEventListener("resize", () => {
+        trimCardQuantities();
+    });
+});
+
+// stop listening to resize event when component is unmounted
+onBeforeUnmount(() => {
+    window.removeEventListener("resize", trimCardQuantities);
+
+    // reset card quantity to infinity
+    store.cardQuantity = Infinity;
 });
 </script>
 
@@ -69,6 +97,8 @@ onBeforeMount(async () => {
 
 <style lang="scss" scoped>
 .home {
+    max-width: 1500px;
+    margin: 0 auto;
 
     h2 {
         color: #ffffff;

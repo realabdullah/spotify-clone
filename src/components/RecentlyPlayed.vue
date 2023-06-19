@@ -50,6 +50,14 @@ const handleMouseLeave = () => {
 	grid-template-columns: repeat(3, 1fr);
 	gap: 1rem;
 
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
 	&__album {
 		height: 80px;
 		background: #ffffff1a;

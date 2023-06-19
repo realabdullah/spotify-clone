@@ -15,7 +15,7 @@
 .view {
     display: none;
 
-    @media (min-width: 1100px) {
+    @media (min-width: 800px) {
         display: block;
     }
 }
@@ -29,8 +29,9 @@
     transform: translate(-50%, -50%);
     text-align: center;
     padding: 1rem;
+    color: aliceblue;
 
-    @media (min-width: 1100px) {
+    @media (min-width: 800px) {
         display: none;
     }
 }
