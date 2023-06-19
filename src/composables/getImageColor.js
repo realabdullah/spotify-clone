@@ -1,5 +1,5 @@
 import ColorThief from "/node_modules/colorthief/dist/color-thief.mjs";
-import { useStore } from "vuex";
+import { useStore } from "../store";
 
 export function useGetImageColor() {
 	const store = useStore();
@@ -13,12 +13,13 @@ export function useGetImageColor() {
 		});
 		const result = colorThief.getColor(image);
 		const color = `rgb(${result.join(", ")})`;
+        let gradientBackgroundColor = "";
 		if (mode === 'album') {
-			return `linear-gradient(180deg, ${color} 0%, #000000 40%)`;
+			gradientBackgroundColor = `linear-gradient(180deg, ${color} 0%, #121212 40%)`;
 		} else {
-			store.commit("setCurrentBackgroundColor", color);
-			return `linear-gradient(180deg, ${color} -40%, #000000 60%)`;
+			gradientBackgroundColor = `linear-gradient(180deg, ${color} -40%, #121212 60%)`;
 		}
+        store.gradientBackgroundColor = gradientBackgroundColor;
 	};
 
 	return { getImageColor };

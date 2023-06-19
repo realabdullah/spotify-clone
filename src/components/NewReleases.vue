@@ -1,11 +1,14 @@
 <script setup>
 import PlayIcon from "../components/Icons/PlayIcon.vue";
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
+import { useStore } from "../store";
 import { useGetTopAlbums } from "../composables/topAlbums";
 
+const store = useStore();
 const newReleases = ref(null);
 const showPlayBtn = ref(false);
 const hoveredRelease = ref(null);
+const releases = ref(null);
 const { getNewReleases } = useGetTopAlbums();
 
 newReleases.value = await getNewReleases();
@@ -19,6 +22,11 @@ const handleMouseLeave = () => {
     hoveredRelease.value = null;
     showPlayBtn.value = false;
 };
+
+watchEffect(() => {
+    const playlistArray = newReleases.value;
+    releases.value = playlistArray.slice(0, store.cardQuantity);
+});
 </script>
 
 <template>
@@ -26,7 +34,7 @@ const handleMouseLeave = () => {
 
     <div class="playlists">
         <ul>
-            <li v-for="release in newReleases" :key="release.id" @mouseenter="handleMouseEnter(release.id)"
+            <li v-for="release in releases" :key="release.id" @mouseenter="handleMouseEnter(release.id)"
                 @mouseleave="handleMouseLeave">
                 <div class="playlist__art">
                     <img :src="release.art" :alt="release.name">

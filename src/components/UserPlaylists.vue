@@ -1,15 +1,14 @@
 <script setup>
 import PlayIcon from "../components/Icons/PlayIcon.vue";
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
+import { useStore } from "../store";
 import { useGetPlaylists } from "../composables/getPlaylists";
 
+const store = useStore();
 const userPlaylists = ref(null);
 const showPlayBtn = ref(false);
 const hoveredPlaylist = ref(null);
 const { getPlaylists } = useGetPlaylists();
-
-const response = await getPlaylists();
-userPlaylists.value = response.slice(0, 6);
 
 const handleMouseEnter = async (id) => {
     hoveredPlaylist.value = id;
@@ -20,6 +19,12 @@ const handleMouseLeave = () => {
     hoveredPlaylist.value = null;
     showPlayBtn.value = false;
 };
+const response = await getPlaylists();
+
+watchEffect(() => {
+    const playlistArray = response;
+    userPlaylists.value = playlistArray.slice(0, store.cardQuantity);
+});
 </script>
 
 <template>

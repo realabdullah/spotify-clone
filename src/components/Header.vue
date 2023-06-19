@@ -6,7 +6,7 @@ import AccountNavIcon from "./Icons/AccountNavIcon.vue";
 import SearchInputIcon from "./Icons/SearchInputIcon.vue";
 import { computed, ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { useStore } from "vuex";
+import { useStore } from "../store";
 import { useGetUserInfo } from "../composables/getUserInfo";
 
 const { getUserInfo } = useGetUserInfo();
@@ -21,7 +21,7 @@ const scrollStatus = ref(false);
 user.value = await getUserInfo();
 
 const routeName = computed(() => route.name);
-const background = computed(() => store.state.currentBackgroundColor);
+const background = computed(() => store.currentBackgroundColor);
 const backgroundStyle = reactive({
 	background,
 });
@@ -113,12 +113,7 @@ const logOut = () => {
 
 <style lang="scss" scoped>
 .header {
-	position: fixed;
-	top: 0;
-	left: 20%;
-	right: 0;
 	background: transparent;
-	padding: 1rem 2rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

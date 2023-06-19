@@ -14,15 +14,13 @@ const emit = defineEmits(['getBackground']);
 
 const showPlayBtn = ref(false);
 const currentHoveredAlbum = ref(null);
-const currentBackground = ref("");
 
 const { getImageColor } = useGetImageColor();
 
 const handleMouseEnter = async (id, url) => {
 	currentHoveredAlbum.value = id;
 	showPlayBtn.value = true;
-	currentBackground.value = await getImageColor(url);
-	emit("getBackground", currentBackground.value);
+	await getImageColor(url);
 };
 
 const handleMouseLeave = () => {
@@ -51,6 +49,14 @@ const handleMouseLeave = () => {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 1rem;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 
 	&__album {
 		height: 80px;
